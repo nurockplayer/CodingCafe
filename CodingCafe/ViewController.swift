@@ -32,32 +32,29 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         
-        DispatchQueue.global().async {
-            self.getCafeCoordinate()
-        }
+        self.getCafeCoordinate()
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // 1. 還沒有詢問過用戶以獲得權限
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestAlwaysAuthorization()
         }
-            // 2. 用戶不同意
+            
         else if CLLocationManager.authorizationStatus() == .denied {
             
             let alertController = UIAlertController(
                 title: "請開啟定位權限",
                 message:"如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟",
                 preferredStyle: .alert)
-            
             let okAction = UIAlertAction(title: "確認", style: .default, handler: nil)
             alertController.addAction(okAction)
             show(alertController, sender: self)
             
         }
-            // 3. 用戶已經同意
+            
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
             locationManager.startUpdatingLocation()
         }
@@ -88,11 +85,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     for (key,_):(String, JSON) in json {
                         let address = json[Int(key)!]["address"].string!
                         let city = json[Int(key)!]["city"].string!
-                        let latitude = json[Int(key)!]["latitude"].double ?? 0
-                        let longitude = json[Int(key)!]["longitude"].double ?? 0
+                        let latitude = json[Int(key)!]["latitude"].string!
+                        let longitude = json[Int(key)!]["longitude"].string!
                         let name = json[Int(key)!]["name"].string ?? ""
 //                        let wifi = json[Int(key)!]["wifi"].string ?? ""
-                        self.setupData(lat: latitude, long: longitude, name: name)
+                        DispatchQueue.global().async {
+                            self.setupData(lat: latitude, long: longitude, name: name)
+                        }
+
                     }
                 }
             case false:
@@ -101,28 +101,31 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
-    func setupData(lat: Double, long: Double, name: String) {
+    func setupData(lat: String, long: String, name: String) {
         // 1. checking region
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self){
             // 2.prepare region
             let title = name
-            let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(lat), CLLocationDegrees(long))
+            let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)
             let regionRadius = 3000.0
             
             // 3. setting region
-            let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 25.033408,
-                                                                         longitude: 121.564099),
-                                          radius: regionRadius, identifier: title)
+//            let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 25.033408,
+//                                                                         longitude: 121.564099),
+//                                          radius: regionRadius, identifier: title)
             
-            locationManager.startMonitoring(for: region)
+//            locationManager.startMonitoring(for: region)
             
             // 4. create annotation
             let cafeAnnotation = MKPointAnnotation()
             cafeAnnotation.coordinate = coordinate;
             cafeAnnotation.title = "\(title)";
+            cafeAnnotation.subtitle = ""
             DispatchQueue.main.async {
                 self.mapView.addAnnotation(cafeAnnotation)
             }
+            
+            
         }
         else {
             print("System can't track regions")
