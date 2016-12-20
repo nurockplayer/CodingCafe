@@ -26,18 +26,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        locationManager.distanceFilter = CLLocationDistance(10)
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
         
         mapView.showsUserLocation = true
-        mapView.userTrackingMode = .followWithHeading
+        mapView.userTrackingMode = .follow
         
         DispatchQueue.global().async {
             self.getCafeCoordinate()
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
         // 1. 還沒有詢問過用戶以獲得權限
         if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -45,7 +46,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
             // 2. 用戶不同意
         else if CLLocationManager.authorizationStatus() == .denied {
-//            showAlert("Location services were previously denied. Please enable location services for this app in Settings.")
+            
+            let alertController = UIAlertController(
+                title: "請開啟定位權限",
+                message:"如要變更權限，請至 設定 > 隱私權 > 定位服務 開啟",
+                preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: "確認", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            show(alertController, sender: self)
+            
         }
             // 3. 用戶已經同意
         else if CLLocationManager.authorizationStatus() == .authorizedAlways {
