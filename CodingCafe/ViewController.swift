@@ -35,18 +35,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         
-        self.getCafeCoordinate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+        }
+        else if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
+        
+        self.getCafeCoordinate()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if CLLocationManager.authorizationStatus() == .notDetermined {
-            locationManager.requestAlwaysAuthorization()
-        }
-            
-        else if CLLocationManager.authorizationStatus() == .denied {
+        if CLLocationManager.authorizationStatus() == .denied {
             
             let alertController = UIAlertController(
                 title: "請開啟定位權限",
@@ -57,10 +64,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             show(alertController, sender: self)
             
         }
-            
-        else if CLLocationManager.authorizationStatus() == .authorizedAlways {
-            locationManager.startUpdatingLocation()
-        }
+        
+        
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -82,20 +88,37 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 
                 if let value = response.result.value {
                     
-                    let json = JSON(value)
                     DispatchQueue.global().async {
+                        
+                        let json = JSON(value)
+                        
                         for (key,_):(String, JSON) in json {
                             let address = json[Int(key)!]["address"].string!
-                            let city = json[Int(key)!]["city"].string!
                             let latitude = json[Int(key)!]["latitude"].string!
                             let longitude = json[Int(key)!]["longitude"].string!
-                            let name = json[Int(key)!]["name"].string!
+
+                            let name = json[Int(key)!]["name"].string ?? ""
+                            let city = json[Int(key)!]["city"].string ?? ""
+                            let url = json[Int(key)!]["url"].string ?? ""
+
                             let wifi = json[Int(key)!]["wifi"].string ?? ""
-                            
-                            let array = [address,city,latitude,longitude,name,wifi]
+                            let seat = json[Int(key)!]["seat"].string ?? ""
+                            let quiet = json[Int(key)!]["quiet"].string ?? ""
+                            let tasty = json[Int(key)!]["tasty"].string ?? ""
+                            let cheap = json[Int(key)!]["cheap"].string ?? ""
+                            let music = json[Int(key)!]["music"].string ?? ""
                             
                             self.setupData(lat: latitude, long: longitude, name: name, address: address)
                         }
+                        /*
+                        if let data = (response.result.description as! String).data(using: .utf8) {
+                            do {
+                                let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+                                print(dictionary!)
+                            } catch {
+                                print(error.localizedDescription)
+                            }
+                        }*/
                     }
                 }
             case false:
@@ -114,6 +137,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 cafeAnnotation.coordinate = coordinate
                 cafeAnnotation.title = name
                 cafeAnnotation.subtitle = address
+            
                 
                 DispatchQueue.main.async {
                     self.mapView.addAnnotation(cafeAnnotation)
