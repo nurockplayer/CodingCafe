@@ -1,0 +1,6 @@
+framework module Pods_CodingCafe {
+  umbrella header "Pods-CodingCafe-umbrella.h"
+
+  export *
+  module * { export * }
+}
