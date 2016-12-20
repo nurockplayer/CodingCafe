@@ -13,6 +13,8 @@
 		DB157D081E08C03800C02A1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB157D061E08C03800C02A1E /* Main.storyboard */; };
 		DB157D0A1E08C03800C02A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB157D091E08C03800C02A1E /* Assets.xcassets */; };
 		DB157D0D1E08C03800C02A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB157D0B1E08C03800C02A1E /* LaunchScreen.storyboard */; };
+		DBC7CE4F1E09053E00A6A057 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE4E1E09053E00A6A057 /* MapKit.framework */; };
+		DBC7CE511E090A1900A6A057 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC7CE501E090A1900A6A057 /* GoogleMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		DB157D091E08C03800C02A1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB157D0C1E08C03800C02A1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB157D0E1E08C03800C02A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBC7CE4E1E09053E00A6A057 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		DBC7CE501E090A1900A6A057 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		F14346CCB2A977045F7E9A0F /* Pods-CodingCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodingCafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-CodingCafe/Pods-CodingCafe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBC7CE4F1E09053E00A6A057 /* MapKit.framework in Frameworks */,
 				B7F1C3A671429E163F8EEF68 /* Pods_CodingCafe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +77,7 @@
 			children = (
 				DB157D021E08C03800C02A1E /* AppDelegate.swift */,
 				DB157D041E08C03800C02A1E /* ViewController.swift */,
+				DBC7CE501E090A1900A6A057 /* GoogleMapViewController.swift */,
 				DB157D061E08C03800C02A1E /* Main.storyboard */,
 				DB157D091E08C03800C02A1E /* Assets.xcassets */,
 				DB157D0B1E08C03800C02A1E /* LaunchScreen.storyboard */,
@@ -83,6 +89,7 @@
 		EFC10996CE8D6BF6DE1EF1E2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBC7CE4E1E09053E00A6A057 /* MapKit.framework */,
 				9FDE239D0A26DD21643CCCC0 /* Pods_CodingCafe.framework */,
 			);
 			name = Frameworks;
@@ -126,6 +133,11 @@
 						DevelopmentTeam = HNQZ48LCHB;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -215,6 +227,7 @@
 			files = (
 				DB157D051E08C03800C02A1E /* ViewController.swift in Sources */,
 				DB157D031E08C03800C02A1E /* AppDelegate.swift in Sources */,
+				DBC7CE511E090A1900A6A057 /* GoogleMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

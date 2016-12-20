@@ -78,7 +78,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             case true:
                 
                 if let value = response.result.value {
-                    print(value)
                     
                     let json = JSON(value)
                     DispatchQueue.global().async {
@@ -116,7 +115,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 DispatchQueue.main.async {
                     self.mapView.addAnnotation(cafeAnnotation)
                 }
-            
         }
         else {
             print("System can't track regions")

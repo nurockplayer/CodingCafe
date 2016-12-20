@@ -43,5 +43,10 @@
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>開啟定位服務</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>googlechromes</string>
+		<string>comgooglemaps</string>
+	</array>
 </dict>
 </plist>
