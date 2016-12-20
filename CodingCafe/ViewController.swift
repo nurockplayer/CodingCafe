@@ -24,6 +24,23 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    func getCafCoordinate() {
+        
+        let API = "https://cafenomad.tw/api/v1.0/cafes"
+        
+        Alamofire.request(API).responseJSON { (response) in
+            switch response.result.isSuccess {
+            case true:
+                
+                print("response = \(response)")
+                
+                if let value = response.result.value {
+                    print("value = \(value)")
+                }
+            case false:
+                print(response.result.error ?? "response result error")
+            }
+        }
+    }
 }
 
