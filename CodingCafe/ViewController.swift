@@ -19,6 +19,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet var mapView: MKMapView!
     
     var locationManager : CLLocationManager!
+    var selectAnnLocation : CLLocationCoordinate2D?
+    var currentLocation : CLLocationCoordinate2D?
+    var annationTitle : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,11 +127,56 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let LoactionCoordinate = locations.last!.coordinate
-        let currentLocation  = CLLocationCoordinate2D(latitude: LoactionCoordinate.latitude, longitude: LoactionCoordinate.longitude)
+        currentLocation = CLLocationCoordinate2D(latitude: LoactionCoordinate.latitude, longitude: LoactionCoordinate.longitude)
         let _span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005);
         
-        self.mapView.setRegion(MKCoordinateRegion(center: currentLocation, span: _span), animated: true);
+        self.mapView.setRegion(MKCoordinateRegion(center: currentLocation!, span: _span), animated: true);
 
     }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if annotation is MKUserLocation {
+            return nil
+        }
+        
+        var cafeAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
+        if cafeAnnotation == nil {
+            cafeAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
+        }
+        
+        let btn_Navigation = UIButton(type: .detailDisclosure)
+        btn_Navigation.titleLabel?.text = "導航"
+        btn_Navigation.addTarget(self, action: #selector(btn_NavigationPress), for: .touchUpInside)
+        cafeAnnotation?.rightCalloutAccessoryView = btn_Navigation
+        
+        cafeAnnotation?.canShowCallout = true
+        
+        return cafeAnnotation
+    }
+    
+    func btn_NavigationPress () {
+        
+        let pA = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
+        let pB = MKPlacemark(coordinate: selectAnnLocation!, addressDictionary: nil)
+        
+        let miA = MKMapItem(placemark: pA)
+        let miB = MKMapItem(placemark: pB)
+        miA.name = "我的位置"
+        miB.name = annationTitle
+        
+        let routes = [miA, miB]
+        
+        let opions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
+        MKMapItem.openMaps(with: routes, launchOptions: opions)
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        selectAnnLocation = view.annotation!.coordinate
+        annationTitle = view.annotation!.title!
+    }
+    
 }
 
