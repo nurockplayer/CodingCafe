@@ -81,18 +81,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     print(value)
                     
                     let json = JSON(value)
-                    
-                    for (key,_):(String, JSON) in json {
-                        let address = json[Int(key)!]["address"].string!
-                        let city = json[Int(key)!]["city"].string!
-                        let latitude = json[Int(key)!]["latitude"].string!
-                        let longitude = json[Int(key)!]["longitude"].string!
-                        let name = json[Int(key)!]["name"].string ?? ""
-//                        let wifi = json[Int(key)!]["wifi"].string ?? ""
-                        DispatchQueue.global().async {
-                            self.setupData(lat: latitude, long: longitude, name: name)
+                    DispatchQueue.global().async {
+                        for (key,_):(String, JSON) in json {
+                            let address = json[Int(key)!]["address"].string!
+                            let city = json[Int(key)!]["city"].string!
+                            let latitude = json[Int(key)!]["latitude"].string!
+                            let longitude = json[Int(key)!]["longitude"].string!
+                            let name = json[Int(key)!]["name"].string!
+                            let wifi = json[Int(key)!]["wifi"].string ?? ""
+                            
+                            let array = [address,city,latitude,longitude,name,wifi]
+                            
+                            self.setupData(lat: latitude, long: longitude, name: name, address: address)
                         }
-
                     }
                 }
             case false:
@@ -101,30 +102,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
-    func setupData(lat: String, long: String, name: String) {
-        // 1. checking region
+    func setupData(lat: String, long: String, name: String, address: String) {
+        
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self){
-            // 2.prepare region
-            let title = name
-            let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)
-            let regionRadius = 3000.0
-            
-            // 3. setting region
-//            let region = CLCircularRegion(center: CLLocationCoordinate2D(latitude: 25.033408,
-//                                                                         longitude: 121.564099),
-//                                          radius: regionRadius, identifier: title)
-            
-//            locationManager.startMonitoring(for: region)
-            
-            // 4. create annotation
-            let cafeAnnotation = MKPointAnnotation()
-            cafeAnnotation.coordinate = coordinate;
-            cafeAnnotation.title = "\(title)";
-            cafeAnnotation.subtitle = ""
-            DispatchQueue.main.async {
-                self.mapView.addAnnotation(cafeAnnotation)
-            }
-            
+             
+                let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)
+                
+                let cafeAnnotation = MKPointAnnotation()
+                cafeAnnotation.coordinate = coordinate
+                cafeAnnotation.title = name
+                cafeAnnotation.subtitle = address
+                
+                DispatchQueue.main.async {
+                    self.mapView.addAnnotation(cafeAnnotation)
+                }
             
         }
         else {
