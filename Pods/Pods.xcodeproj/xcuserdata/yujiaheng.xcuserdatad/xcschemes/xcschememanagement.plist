@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>ObjectMapper.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>Pods-CodingCafe.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -38,6 +43,21 @@
 			<true/>
 		</dict>
 		<key>A0198EDCAD8D444F7CEEFF46F05C84F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B9BA761002CA98DDCD637DDA92349D84</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DFE2BB3F4162D75DBBDFD6B6D1930D6E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E30CA1A9FD95C1FF06C2A8847196943B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

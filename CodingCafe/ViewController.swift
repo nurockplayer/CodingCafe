@@ -10,6 +10,7 @@ import UIKit
 import MapKit
 import SwiftyJSON
 import Alamofire
+import ObjectMapper
 
 let API = "https://cafenomad.tw/api/v1.0/cafes"
 
@@ -95,12 +96,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         
                         let json = JSON(value)
                         
-                        
-                        
                         for (key,_):(String, JSON) in json {
                             
                             self.dicJSON = json[Int(key)!].dictionaryValue
-                            
+
+//                            let dic = dicJSON.map({ ((key: String, value: JSON)) -> T in
+//                                <#code#>
+//                            })
                             
                             let address = json[Int(key)!]["address"].string!
                             let latitude = json[Int(key)!]["latitude"].string!
