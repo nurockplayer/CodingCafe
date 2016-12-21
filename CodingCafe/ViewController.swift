@@ -22,10 +22,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var selectAnnLocation : CLLocationCoordinate2D?
     var currentLocation : CLLocationCoordinate2D?
     var annationTitle : String?
+    let session : SessionManager = SessionManager()
+    
+    var dicJSON: Dictionary<String, JSON> = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -80,9 +84,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
     func getCafeCoordinate() {
-        
-        
-        Alamofire.request(API).responseJSON { (response) in
+       
+        Alamofire.request(API, encoding: JSONEncoding.default).responseJSON { (response) in
             switch response.result.isSuccess {
             case true:
                 
@@ -92,15 +95,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         
                         let json = JSON(value)
                         
+                        
+                        
                         for (key,_):(String, JSON) in json {
+                            
+                            self.dicJSON = json[Int(key)!].dictionaryValue
+                            
+                            
                             let address = json[Int(key)!]["address"].string!
                             let latitude = json[Int(key)!]["latitude"].string!
                             let longitude = json[Int(key)!]["longitude"].string!
-
                             let name = json[Int(key)!]["name"].string ?? ""
+                            /*
                             let city = json[Int(key)!]["city"].string ?? ""
                             let url = json[Int(key)!]["url"].string ?? ""
-
                             let wifi = json[Int(key)!]["wifi"].string ?? ""
                             let seat = json[Int(key)!]["seat"].string ?? ""
                             let quiet = json[Int(key)!]["quiet"].string ?? ""
@@ -108,17 +116,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                             let cheap = json[Int(key)!]["cheap"].string ?? ""
                             let music = json[Int(key)!]["music"].string ?? ""
                             
+                            print(wifi,seat,quiet,tasty,cheap,music)
+                            */
+                            
+                            
+                            
                             self.setupData(lat: latitude, long: longitude, name: name, address: address)
                         }
-                        /*
-                        if let data = (response.result.description as! String).data(using: .utf8) {
-                            do {
-                                let dictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                                print(dictionary!)
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }*/
+                        
+                        print(self.dicJSON)
                     }
                 }
             case false:
