@@ -23,14 +23,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var selectAnnLocation : CLLocationCoordinate2D?
     var currentLocation : CLLocationCoordinate2D?
     var annationTitle : String?
-    let session : SessionManager = SessionManager()
+    
     
     var dicJSON: Dictionary<String, JSON> = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -99,10 +98,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         for (key,_):(String, JSON) in json {
                             
                             self.dicJSON = json[Int(key)!].dictionaryValue
+                            
+                            var dict2 = [String: String]()
+                            
+                            self.dicJSON.forEach { dict2[$0.0] = String(describing: $0.1) }
+                            
+                            print("\(type(of: dict2)): \(dict2)")
 
-//                            let dic = dicJSON.map({ ((key: String, value: JSON)) -> T in
-//                                <#code#>
-//                            })
                             
                             let address = json[Int(key)!]["address"].string!
                             let latitude = json[Int(key)!]["latitude"].string!
@@ -126,7 +128,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                             self.setupData(lat: latitude, long: longitude, name: name, address: address)
                         }
                         
-                        print(self.dicJSON)
+//                        print(self.dicJSON)
                     }
                 }
             case false:
