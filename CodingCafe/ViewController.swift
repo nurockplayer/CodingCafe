@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import SwiftyJSON
 import Alamofire
-import ObjectMapper
+
 
 let API = "https://cafenomad.tw/api/v1.0/cafes"
 
@@ -25,7 +25,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var annationTitle : String?
     
     
-    var dicJSON: Dictionary<String, JSON> = [:]
+//    var dicJSON: Dictionary<String, String> = [:]
+    var arrayDic = [Dictionary<String, String>]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,9 +69,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             show(alertController, sender: self)
             
         }
-        
-        
-        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -97,20 +95,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         
                         for (key,_):(String, JSON) in json {
                             
-                            self.dicJSON = json[Int(key)!].dictionaryValue
+                            let dicValue = json[Int(key)!].dictionaryValue
+                            var dicString : Dictionary<String, String> = [:]
+                            dicValue.forEach { dicString[$0.0] = String(describing: $0.1) }
                             
-                            var dict2 = [String: String]()
+//                            print("\(type(of: dicString)): \(dicString)")
+                            self.arrayDic += [dicString]
                             
-                            self.dicJSON.forEach { dict2[$0.0] = String(describing: $0.1) }
-                            
-                            print("\(type(of: dict2)): \(dict2)")
-
-                            
+                            /*
                             let address = json[Int(key)!]["address"].string!
                             let latitude = json[Int(key)!]["latitude"].string!
                             let longitude = json[Int(key)!]["longitude"].string!
                             let name = json[Int(key)!]["name"].string ?? ""
-                            /*
                             let city = json[Int(key)!]["city"].string ?? ""
                             let url = json[Int(key)!]["url"].string ?? ""
                             let wifi = json[Int(key)!]["wifi"].string ?? ""
@@ -123,12 +119,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                             print(wifi,seat,quiet,tasty,cheap,music)
                             */
                             
-                            
-                            
-                            self.setupData(lat: latitude, long: longitude, name: name, address: address)
+                            self.setupData(dic: dicString)
                         }
-                        
-//                        print(self.dicJSON)
+                    print("arrayDic = \(self.arrayDic)")
                     }
                 }
             case false:
@@ -137,16 +130,16 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
     }
     
-    func setupData(lat: String, long: String, name: String, address: String) {
+    func setupData(dic: Dictionary<String, String>) {
         
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self){
              
-                let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)
+                let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(dic["latitude"]!)!, CLLocationDegrees(dic["longitude"]!)!)
                 
                 let cafeAnnotation = MKPointAnnotation()
                 cafeAnnotation.coordinate = coordinate
-                cafeAnnotation.title = name
-                cafeAnnotation.subtitle = address
+                cafeAnnotation.title = dic["name"]
+                cafeAnnotation.subtitle = dic["address"]
             
                 
                 DispatchQueue.main.async {

@@ -10,7 +10,6 @@ target 'CodingCafe' do
   # Pods for CodingCafe
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'ObjectMapper'
   pod 'GoogleMaps'
   
 end
