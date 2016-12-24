@@ -24,8 +24,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var currentLocation : CLLocationCoordinate2D?
     var annationTitle : String?
     
+    @IBOutlet var label_WIfi: UILabel!
+    @IBOutlet var label_Seat: UILabel!
+    @IBOutlet var label_Quiet: UILabel!
+    @IBOutlet var label_CoffeeTasty: UILabel!
+    @IBOutlet var label_Price: UILabel!
+    @IBOutlet var label_Music: UILabel!
+    @IBOutlet var label_NearMRT: UILabel!
+    @IBOutlet var label_LimitedTime: UILabel!
+    @IBOutlet var label_Socket: UILabel!
+    @IBOutlet var label_Stand: UILabel!
+    @IBOutlet var label_MRT: UILabel!
+    @IBOutlet var label_BussinessHour: UILabel!
     
-//    var dicJSON: Dictionary<String, String> = [:]
+    @IBOutlet var vc_Detail: UIView!
+    
+    
     var arrayDic = [Dictionary<String, String>]()
     
     override func viewDidLoad() {
@@ -44,6 +58,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        vc_Detail.isHidden = true
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestAlwaysAuthorization()
@@ -121,7 +137,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                             
                             self.setupData(dic: dicString)
                         }
-                    print("arrayDic = \(self.arrayDic)")
+//                    print("arrayDic = \(self.arrayDic)")
                     }
                 }
             case false:
@@ -139,7 +155,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 let cafeAnnotation = MKPointAnnotation()
                 cafeAnnotation.coordinate = coordinate
                 cafeAnnotation.title = dic["name"]
-                cafeAnnotation.subtitle = dic["address"]
+//                cafeAnnotation.subtitle = dic["address"]
             
                 
                 DispatchQueue.main.async {
@@ -173,7 +189,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         let btn_Navigation = UIButton(type: .detailDisclosure)
-        btn_Navigation.titleLabel?.text = "導航"
+        
         btn_Navigation.addTarget(self, action: #selector(btn_NavigationPress), for: .touchUpInside)
         cafeAnnotation?.rightCalloutAccessoryView = btn_Navigation
         
@@ -196,6 +212,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         let opions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
         MKMapItem.openMaps(with: routes, launchOptions: opions)
+   
     }
     
     
@@ -203,7 +220,31 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         selectAnnLocation = view.annotation!.coordinate
         annationTitle = view.annotation!.title!
+        
+        vc_Detail.isHidden = false
+        var frame = mapView.frame
+        frame.size.height = vc_Detail.frame.origin.y
+        mapView.frame = frame
+        
+//        arrayDic.index(where: <#T##([String : String]) throws -> Bool#>)
+        
+        label_WIfi.text = ""
+        label_Seat.text = ""
+        label_Quiet.text = ""
+        label_CoffeeTasty.text = ""
+        label_Price.text = ""
+        label_Music.text = ""
+        label_NearMRT.text = ""
+        label_LimitedTime.text = ""
+        label_Socket.text = ""
+        label_Stand.text = ""
+        label_MRT.text = ""
+        label_BussinessHour.text = ""
     }
     
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        vc_Detail.isHidden = true
+        mapView.frame = self.view.frame
+    }
 }
 
