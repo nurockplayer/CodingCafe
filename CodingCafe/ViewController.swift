@@ -24,23 +24,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var currentLocation : CLLocationCoordinate2D?
     var annationTitle : String?
     
+    var arrayTitle = [String]()
+    var arrayDic = [Dictionary<String, String>]()
+    var fbUrl = ""
+    
     @IBOutlet var label_WIfi: UILabel!
     @IBOutlet var label_Seat: UILabel!
     @IBOutlet var label_Quiet: UILabel!
-    @IBOutlet var label_CoffeeTasty: UILabel!
-    @IBOutlet var label_Price: UILabel!
+    @IBOutlet var label_Tasty: UILabel!
+    @IBOutlet var label_Cheap: UILabel!
     @IBOutlet var label_Music: UILabel!
-    @IBOutlet var label_NearMRT: UILabel!
-    @IBOutlet var label_LimitedTime: UILabel!
-    @IBOutlet var label_Socket: UILabel!
-    @IBOutlet var label_Stand: UILabel!
-    @IBOutlet var label_MRT: UILabel!
-    @IBOutlet var label_BussinessHour: UILabel!
+    @IBOutlet var label_Address: UILabel!
+    @IBOutlet var label_Name: UILabel!
+    
+    @IBOutlet var btn_Navigation: UIButton!
     
     @IBOutlet var vc_Detail: UIView!
     
     
-    var arrayDic = [Dictionary<String, String>]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +119,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                             
 //                            print("\(type(of: dicString)): \(dicString)")
                             self.arrayDic += [dicString]
-                            
+                            self.arrayTitle += [json[Int(key)!]["name"].string ?? ""]
                             /*
                             let address = json[Int(key)!]["address"].string!
                             let latitude = json[Int(key)!]["latitude"].string!
@@ -137,7 +139,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                             
                             self.setupData(dic: dicString)
                         }
-//                    print("arrayDic = \(self.arrayDic)")
                     }
                 }
             case false:
@@ -188,17 +189,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             cafeAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
         }
         
-        let btn_Navigation = UIButton(type: .detailDisclosure)
-        
-        btn_Navigation.addTarget(self, action: #selector(btn_NavigationPress), for: .touchUpInside)
-        cafeAnnotation?.rightCalloutAccessoryView = btn_Navigation
-        
-        cafeAnnotation?.canShowCallout = true
+//        let btn_Navigation = UIButton(type: .detailDisclosure)
+//        btn_Navigation.addTarget(self, action: #selector(btn_NavigationPress), for: .touchUpInside)
+//        cafeAnnotation?.rightCalloutAccessoryView = btn_Navigation
+//        cafeAnnotation?.canShowCallout = true
         
         return cafeAnnotation
     }
     
-    func btn_NavigationPress () {
+    @IBAction func btn_NavigationPress () {
         
         let pA = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
         let pB = MKPlacemark(coordinate: selectAnnLocation!, addressDictionary: nil)
@@ -215,6 +214,13 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
    
     }
     
+    @IBAction func btn_FBPress(_ sender: Any) {
+        
+        if UIApplication.shared.canOpenURL(URL(string: fbUrl)!) {
+            UIApplication.shared.openURL(URL(string: "fb://profile/nurockplayer")!)
+        }
+        
+    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
@@ -228,18 +234,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
 //        arrayDic.index(where: <#T##([String : String]) throws -> Bool#>)
         
-        label_WIfi.text = ""
-        label_Seat.text = ""
-        label_Quiet.text = ""
-        label_CoffeeTasty.text = ""
-        label_Price.text = ""
-        label_Music.text = ""
-        label_NearMRT.text = ""
-        label_LimitedTime.text = ""
-        label_Socket.text = ""
-        label_Stand.text = ""
-        label_MRT.text = ""
-        label_BussinessHour.text = ""
+        let indexNumber = arrayTitle.index(of: annationTitle!)
+        
+        let dic = arrayDic[indexNumber!]
+        
+        label_Name.text = dic["name"] ?? ""
+        label_Name.sizeToFit()
+        label_WIfi.text = dic["wifi"] ?? ""
+        label_Seat.text = dic["seat"] ?? ""
+        label_Quiet.text = dic["quiet"] ?? ""
+        label_Tasty.text = dic["tasty"] ?? ""
+        label_Cheap.text = dic["cheap"] ?? ""
+        label_Music.text = dic["music"] ?? ""
+        label_Address.text = dic["address"] ?? ""
+        label_Address.sizeToFit()
+//        btn_Navigation.frame.origin.x = label_Address.frame.maxX + 5
+        fbUrl = dic["url"] ?? ""
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
