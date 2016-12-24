@@ -215,11 +215,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     @IBAction func btn_FBPress(_ sender: Any) {
+        /*
+        var rFbUrl = fbUrl.replacingOccurrences(of: "https://www.facebook.com/", with: "")
+        rFbUrl = rFbUrl.replacingOccurrences(of: "https://zh-tw.facebook.com/", with: "")
+        rFbUrl = rFbUrl.replacingOccurrences(of: "/?fref=ts", with: "")
+        rFbUrl = rFbUrl.replacingOccurrences(of: "/?ref=page_internal", with: "")
+        rFbUrl = rFbUrl.replacingOccurrences(of: "m.facebook.com/", with: "")
+        rFbUrl = rFbUrl.replacingOccurrences(of: "/", with: "")
+        rFbUrl = "fb://profile/\(rFbUrl)"
         
-        if UIApplication.shared.canOpenURL(URL(string: fbUrl)!) {
-            UIApplication.shared.openURL(URL(string: "fb://profile/nurockplayer")!)
-        }
-        
+        */
+        UIApplication.shared.openURL(URL(string: fbUrl)!)
+        print(fbUrl)
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
