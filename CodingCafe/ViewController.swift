@@ -51,7 +51,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLLocationAccuracyNearestTenMeters
+        locationManager.distanceFilter = kCLLocationAccuracyHundredMeters
         
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
@@ -175,6 +175,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let _span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005);
         
         self.mapView.setRegion(MKCoordinateRegion(center: currentLocation!, span: _span), animated: true);
+//        mapView.setCenter(currentLocation!, animated: true)
+        manager.stopUpdatingLocation()
 
     }
     
