@@ -13,6 +13,7 @@
 		DB157D081E08C03800C02A1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB157D061E08C03800C02A1E /* Main.storyboard */; };
 		DB157D0A1E08C03800C02A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB157D091E08C03800C02A1E /* Assets.xcassets */; };
 		DB157D0D1E08C03800C02A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB157D0B1E08C03800C02A1E /* LaunchScreen.storyboard */; };
+		DBC5F54A1E110EB100C43A1E /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */; };
 		DBC7CE4F1E09053E00A6A057 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE4E1E09053E00A6A057 /* MapKit.framework */; };
 		DBC7CE5F1E097F6D00A6A057 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE5E1E097F6D00A6A057 /* Alamofire.framework */; };
 		DBC7CE611E097F7000A6A057 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE601E097F7000A6A057 /* SwiftyJSON.framework */; };
@@ -28,6 +29,7 @@
 		DB157D091E08C03800C02A1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB157D0C1E08C03800C02A1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB157D0E1E08C03800C02A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		DBC7CE4E1E09053E00A6A057 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBC7CE5E1E097F6D00A6A057 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/CodingCafe-aplgnhxqjibpmpajyttptcwimgph/Build/Products/Debug-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		DBC7CE601E097F7000A6A057 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/CodingCafe-aplgnhxqjibpmpajyttptcwimgph/Build/Products/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				DB157D021E08C03800C02A1E /* AppDelegate.swift */,
 				DB157D041E08C03800C02A1E /* ViewController.swift */,
+				DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */,
 				DB157D061E08C03800C02A1E /* Main.storyboard */,
 				DB157D091E08C03800C02A1E /* Assets.xcassets */,
 				DB157D0B1E08C03800C02A1E /* LaunchScreen.storyboard */,
@@ -232,6 +235,7 @@
 			files = (
 				DB157D051E08C03800C02A1E /* ViewController.swift in Sources */,
 				DB157D031E08C03800C02A1E /* AppDelegate.swift in Sources */,
+				DBC5F54A1E110EB100C43A1E /* GoogleMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

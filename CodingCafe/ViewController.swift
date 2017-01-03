@@ -56,19 +56,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
         
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         vc_Detail.isHidden = true
-        
-        if CLLocationManager.authorizationStatus() == .notDetermined {
-            locationManager.requestAlwaysAuthorization()
-        }
-        else if CLLocationManager.authorizationStatus() == .authorizedAlways {
-            locationManager.startUpdatingLocation()
-        }
         
         self.getCafeCoordinate()
     }
@@ -176,8 +171,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         self.mapView.setRegion(MKCoordinateRegion(center: currentLocation!, span: _span), animated: true);
 //        mapView.setCenter(currentLocation!, animated: true)
-        manager.stopUpdatingLocation()
-
+        if currentLocation != nil {
+            manager.stopUpdatingLocation()
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -201,34 +197,26 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     @IBAction func btn_NavigationPress () {
         
-        let pA = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
-        let pB = MKPlacemark(coordinate: selectAnnLocation!, addressDictionary: nil)
-        
-        let miA = MKMapItem(placemark: pA)
-        let miB = MKMapItem(placemark: pB)
-        miA.name = "我的位置"
-        miB.name = annationTitle
-        
-        let routes = [miA, miB]
-        
-        let opions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
-        MKMapItem.openMaps(with: routes, launchOptions: opions)
+        if (currentLocation != nil) {
+            let pA = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
+            let pB = MKPlacemark(coordinate: selectAnnLocation!, addressDictionary: nil)
+            
+            let miA = MKMapItem(placemark: pA)
+            let miB = MKMapItem(placemark: pB)
+            miA.name = "我的位置"
+            miB.name = annationTitle
+            
+            let routes = [miA, miB]
+            
+            let opions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
+            MKMapItem.openMaps(with: routes, launchOptions: opions)
+        }
    
     }
     
     @IBAction func btn_FBPress(_ sender: Any) {
-        /*
-        var rFbUrl = fbUrl.replacingOccurrences(of: "https://www.facebook.com/", with: "")
-        rFbUrl = rFbUrl.replacingOccurrences(of: "https://zh-tw.facebook.com/", with: "")
-        rFbUrl = rFbUrl.replacingOccurrences(of: "/?fref=ts", with: "")
-        rFbUrl = rFbUrl.replacingOccurrences(of: "/?ref=page_internal", with: "")
-        rFbUrl = rFbUrl.replacingOccurrences(of: "m.facebook.com/", with: "")
-        rFbUrl = rFbUrl.replacingOccurrences(of: "/", with: "")
-        rFbUrl = "fb://profile/\(rFbUrl)"
-        
-        */
+
         UIApplication.shared.openURL(URL(string: fbUrl)!)
-        print(fbUrl)
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -242,7 +230,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.frame = frame
         
 //        arrayDic.index(where: <#T##([String : String]) throws -> Bool#>)
-        
+        print(arrayTitle.count)
         let indexNumber = arrayTitle.index(of: annationTitle!)
         
         let dic = arrayDic[indexNumber!]
