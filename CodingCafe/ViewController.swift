@@ -115,22 +115,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //                            print("\(type(of: dicString)): \(dicString)")
                             self.arrayDic += [dicString]
                             self.arrayTitle += [json[Int(key)!]["name"].string ?? ""]
-                            /*
-                            let address = json[Int(key)!]["address"].string!
-                            let latitude = json[Int(key)!]["latitude"].string!
-                            let longitude = json[Int(key)!]["longitude"].string!
-                            let name = json[Int(key)!]["name"].string ?? ""
-                            let city = json[Int(key)!]["city"].string ?? ""
-                            let url = json[Int(key)!]["url"].string ?? ""
-                            let wifi = json[Int(key)!]["wifi"].string ?? ""
-                            let seat = json[Int(key)!]["seat"].string ?? ""
-                            let quiet = json[Int(key)!]["quiet"].string ?? ""
-                            let tasty = json[Int(key)!]["tasty"].string ?? ""
-                            let cheap = json[Int(key)!]["cheap"].string ?? ""
-                            let music = json[Int(key)!]["music"].string ?? ""
                             
-                            print(wifi,seat,quiet,tasty,cheap,music)
-                            */
                             
                             self.setupData(dic: dicString)
                         }
@@ -151,7 +136,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
                 let cafeAnnotation = MKPointAnnotation()
                 cafeAnnotation.coordinate = coordinate
                 cafeAnnotation.title = dic["name"]
-//                cafeAnnotation.subtitle = dic["address"]
             
                 
                 DispatchQueue.main.async {
@@ -195,41 +179,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         return cafeAnnotation
     }
     
-    @IBAction func btn_NavigationPress () {
-        
-        if (currentLocation != nil) {
-            let pA = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
-            let pB = MKPlacemark(coordinate: selectAnnLocation!, addressDictionary: nil)
-            
-            let miA = MKMapItem(placemark: pA)
-            let miB = MKMapItem(placemark: pB)
-            miA.name = "我的位置"
-            miB.name = annationTitle
-            
-            let routes = [miA, miB]
-            
-            let opions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
-            MKMapItem.openMaps(with: routes, launchOptions: opions)
-        }
-   
-    }
-    
-    @IBAction func btn_FBPress(_ sender: Any) {
-
-        UIApplication.shared.openURL(URL(string: fbUrl)!)
-    }
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
         selectAnnLocation = view.annotation!.coordinate
         annationTitle = view.annotation!.title!
         
         vc_Detail.isHidden = false
-        var frame = mapView.frame
-        frame.size.height = vc_Detail.frame.origin.y
-        mapView.frame = frame
+        UIView.animate(withDuration: 0.1) {
+            var frame = mapView.frame
+            frame.size.height = self.vc_Detail.frame.origin.y
+            mapView.frame = frame
+        }
         
-//        arrayDic.index(where: <#T##([String : String]) throws -> Bool#>)
+        
+        //        arrayDic.index(where: <#T##([String : String]) throws -> Bool#>)
         print(arrayTitle.count)
         let indexNumber = arrayTitle.index(of: annationTitle!)
         
@@ -245,13 +208,58 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         label_Music.text = dic["music"] ?? ""
         label_Address.text = dic["address"] ?? ""
         label_Address.sizeToFit()
-//        btn_Navigation.frame.origin.x = label_Address.frame.maxX + 5
+        //        btn_Navigation.frame.origin.x = label_Address.frame.maxX + 5
         fbUrl = dic["url"] ?? ""
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        vc_Detail.isHidden = true
-        mapView.frame = self.view.frame
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            mapView.frame = self.view.frame
+        }) { (finished) in
+            self.vc_Detail.isHidden = true
+        }
+        
     }
+
+    
+    @IBAction func btn_NavigationPress () {
+        
+        if currentLocation == nil {
+            return
+        }
+        
+        let pA = MKPlacemark(coordinate: currentLocation!, addressDictionary: nil)
+        let pB = MKPlacemark(coordinate: selectAnnLocation!, addressDictionary: nil)
+        
+        let miA = MKMapItem(placemark: pA)
+        let miB = MKMapItem(placemark: pB)
+        miA.name = "我的位置"
+        miB.name = annationTitle
+        
+        let routes = [miA, miB]
+        
+        let opions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
+        MKMapItem.openMaps(with: routes, launchOptions: opions)
+
+   
+    }
+    
+    @IBAction func btn_FBPress(_ sender: Any) {
+        
+        if let url = URL(string: fbUrl) {
+            UIApplication.shared.openURL(url)
+        } else {
+            let alertController = UIAlertController(
+                title: "此店家無粉絲專頁",
+                message:"",
+                preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "確認", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            show(alertController, sender: self)
+        }
+        
+    }
+    
 }
 
