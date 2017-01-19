@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         GMSServices.provideAPIKey("AIzaSyB4SKZNrjkzCaYemmr14GDn6Zlf3CQ6ufg")
+        UITabBar.appearance().tintColor = UIColor.init(red: 79/255, green: 63/255, blue: 61/255, alpha: 1)
         
         return true
     }

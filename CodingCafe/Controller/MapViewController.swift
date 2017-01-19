@@ -1,52 +1,46 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  CodingCafe
 //
-//  Created by 余佳恆 on 2016/12/20.
-//  Copyright © 2016年 icdt. All rights reserved.
+//  Created by 余佳恆 on 2017/1/16.
+//  Copyright © 2017年 icdt. All rights reserved.
 //
 
 import UIKit
 import MapKit
-import SwiftyJSON
 import Alamofire
+import SwiftyJSON
 
-
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     let API = "https://cafenomad.tw/api/v1.0/cafes"
 
-    
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var detailView: UIView!
+    
+//    @IBOutlet var label_WIfi: UILabel!
+//    @IBOutlet var label_Seat: UILabel!
+//    @IBOutlet var label_Quiet: UILabel!
+//    @IBOutlet var label_Tasty: UILabel!
+//    @IBOutlet var label_Cheap: UILabel!
+//    @IBOutlet var label_Music: UILabel!
+    @IBOutlet var label_Name: UILabel!
+    @IBOutlet var label_Address: UILabel!
     
     var locationManager : CLLocationManager!
     var selectAnnLocation : CLLocationCoordinate2D?
     var currentLocation : CLLocationCoordinate2D?
     var annationTitle : String?
-    
+
     var arrayTitle = [String]()
     var arrayDic = [Dictionary<String, String>]()
     var fbUrl = ""
-    
-    @IBOutlet var label_WIfi: UILabel!
-    @IBOutlet var label_Seat: UILabel!
-    @IBOutlet var label_Quiet: UILabel!
-    @IBOutlet var label_Tasty: UILabel!
-    @IBOutlet var label_Cheap: UILabel!
-    @IBOutlet var label_Music: UILabel!
-    @IBOutlet var label_Address: UILabel!
-    @IBOutlet var label_Name: UILabel!
-    
-    @IBOutlet var btn_Navigation: UIButton!
-    
-    @IBOutlet var vc_Detail: UIView!
-    
-    
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -62,11 +56,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        vc_Detail.isHidden = true
+//        detailView.isHidden = true
         
-        self.getCafeCoordinate()
+         self.getCafeCoordinate()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -82,19 +76,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
         }
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        
-        locationManager.stopUpdatingLocation()
-    }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
+        // Dispose of any resources that can be recreated.
     }
-
+    
+    
     func getCafeCoordinate() {
-       
+        
         Alamofire.request(API, encoding: JSONEncoding.default).responseJSON { (response) in
             switch response.result.isSuccess {
             case true:
@@ -128,17 +118,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func setupData(dic: Dictionary<String, String>) {
         
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self){
-             
-                let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(dic["latitude"]!)!, CLLocationDegrees(dic["longitude"]!)!)
-                
-                let cafeAnnotation = MKPointAnnotation()
-                cafeAnnotation.coordinate = coordinate
-                cafeAnnotation.title = dic["name"]
             
-                
-                DispatchQueue.main.async {
-                    self.mapView.addAnnotation(cafeAnnotation)
-                }
+            let coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(dic["latitude"]!)!, CLLocationDegrees(dic["longitude"]!)!)
+            
+            let cafeAnnotation = MKPointAnnotation()
+            cafeAnnotation.coordinate = coordinate
+            cafeAnnotation.title = dic["name"]
+            
+            
+            DispatchQueue.main.async {
+                self.mapView.addAnnotation(cafeAnnotation)
+            }
         }
         else {
             print("System can't track regions")
@@ -152,7 +142,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let _span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.005, longitudeDelta: 0.005);
         
         self.mapView.setRegion(MKCoordinateRegion(center: currentLocation!, span: _span), animated: true);
-//        mapView.setCenter(currentLocation!, animated: true)
+        //        mapView.setCenter(currentLocation!, animated: true)
         if currentLocation != nil {
             manager.stopUpdatingLocation()
         }
@@ -169,10 +159,10 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             cafeAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
         }
         
-//        let btn_Navigation = UIButton(type: .detailDisclosure)
-//        btn_Navigation.addTarget(self, action: #selector(btn_NavigationPress), for: .touchUpInside)
-//        cafeAnnotation?.rightCalloutAccessoryView = btn_Navigation
-//        cafeAnnotation?.canShowCallout = true
+        //        let btn_Navigation = UIButton(type: .detailDisclosure)
+        //        btn_Navigation.addTarget(self, action: #selector(btn_NavigationPress), for: .touchUpInside)
+        //        cafeAnnotation?.rightCalloutAccessoryView = btn_Navigation
+        //        cafeAnnotation?.canShowCallout = true
         
         return cafeAnnotation
     }
@@ -182,15 +172,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         selectAnnLocation = view.annotation!.coordinate
         annationTitle = view.annotation!.title!
         
-        vc_Detail.isHidden = false
+        detailView.isHidden = false
         UIView.animate(withDuration: 0.1) {
             var frame = mapView.frame
-            frame.size.height = self.vc_Detail.frame.origin.y
+            frame.size.height = self.detailView.frame.origin.y
             mapView.frame = frame
         }
         
         
-        //        arrayDic.index(where: <#T##([String : String]) throws -> Bool#>)
         print(arrayTitle.count)
         let indexNumber = arrayTitle.index(of: annationTitle!)
         
@@ -198,12 +187,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         label_Name.text = dic["name"] ?? ""
         label_Name.sizeToFit()
-        label_WIfi.text = dic["wifi"] ?? ""
-        label_Seat.text = dic["seat"] ?? ""
-        label_Quiet.text = dic["quiet"] ?? ""
-        label_Tasty.text = dic["tasty"] ?? ""
-        label_Cheap.text = dic["cheap"] ?? ""
-        label_Music.text = dic["music"] ?? ""
+//        label_WIfi.text = dic["wifi"] ?? ""
+//        label_Seat.text = dic["seat"] ?? ""
+//        label_Quiet.text = dic["quiet"] ?? ""
+//        label_Tasty.text = dic["tasty"] ?? ""
+//        label_Cheap.text = dic["cheap"] ?? ""
+//        label_Music.text = dic["music"] ?? ""
         label_Address.text = dic["address"] ?? ""
         label_Address.sizeToFit()
         //        btn_Navigation.frame.origin.x = label_Address.frame.maxX + 5
@@ -215,14 +204,27 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         UIView.animate(withDuration: 0.1, animations: {
             mapView.frame = self.view.frame
         }) { (finished) in
-            self.vc_Detail.isHidden = true
+//            self.detailView.isHidden = true
         }
         
     }
-
     
-    @IBAction func btn_NavigationPress () {
-        
+    
+    @IBAction func btn_FB(_ sender: Any) {
+        if let url = URL(string: fbUrl) {
+            UIApplication.shared.openURL(url)
+        } else {
+            let alertController = UIAlertController(
+                title: "此店家無粉絲專頁",
+                message:"",
+                preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "確認", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            show(alertController, sender: self)
+        }
+    }
+
+    @IBAction func btn_Navigation(_ sender: Any) {
         if currentLocation == nil {
             return
         }
@@ -240,24 +242,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let opions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking]
         MKMapItem.openMaps(with: routes, launchOptions: opions)
 
-   
     }
     
-    @IBAction func btn_FBPress(_ sender: Any) {
-        
-        if let url = URL(string: fbUrl) {
-            UIApplication.shared.openURL(url)
-        } else {
-            let alertController = UIAlertController(
-                title: "此店家無粉絲專頁",
-                message:"",
-                preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "確認", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            show(alertController, sender: self)
-        }
-        
-    }
     
-}
+    /*
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

@@ -8,11 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		B7F1C3A671429E163F8EEF68 /* Pods_CodingCafe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDE239D0A26DD21643CCCC0 /* Pods_CodingCafe.framework */; };
+		DB09B4271E30FC7200A9A600 /* CoreEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB09B4261E30FC7200A9A600 /* CoreEntity.swift */; };
 		DB157D031E08C03800C02A1E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB157D021E08C03800C02A1E /* AppDelegate.swift */; };
 		DB157D051E08C03800C02A1E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB157D041E08C03800C02A1E /* ViewController.swift */; };
 		DB157D081E08C03800C02A1E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB157D061E08C03800C02A1E /* Main.storyboard */; };
 		DB157D0A1E08C03800C02A1E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB157D091E08C03800C02A1E /* Assets.xcassets */; };
 		DB157D0D1E08C03800C02A1E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB157D0B1E08C03800C02A1E /* LaunchScreen.storyboard */; };
+		DB8FA8231E2AA53800B678C8 /* Communicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8FA8221E2AA53800B678C8 /* Communicator.swift */; };
+		DBBED7F31E2D1919000C660A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBED7F21E2D1919000C660A /* MapView.swift */; };
+		DBBED7F51E2D1950000C660A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBED7F41E2D1950000C660A /* MapViewController.swift */; };
+		DBBED7F71E2D1AF8000C660A /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBED7F61E2D1AF8000C660A /* MapDetailView.swift */; };
 		DBC5F54A1E110EB100C43A1E /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */; };
 		DBC7CE4F1E09053E00A6A057 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE4E1E09053E00A6A057 /* MapKit.framework */; };
 		DBC7CE5F1E097F6D00A6A057 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE5E1E097F6D00A6A057 /* Alamofire.framework */; };
@@ -22,6 +27,7 @@
 /* Begin PBXFileReference section */
 		9FDE239D0A26DD21643CCCC0 /* Pods_CodingCafe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodingCafe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABB5F5583B991E698A28A53A /* Pods-CodingCafe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodingCafe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CodingCafe/Pods-CodingCafe.debug.xcconfig"; sourceTree = "<group>"; };
+		DB09B4261E30FC7200A9A600 /* CoreEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreEntity.swift; sourceTree = "<group>"; };
 		DB157CFF1E08C03800C02A1E /* CodingCafe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodingCafe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB157D021E08C03800C02A1E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DB157D041E08C03800C02A1E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,6 +35,10 @@
 		DB157D091E08C03800C02A1E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DB157D0C1E08C03800C02A1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DB157D0E1E08C03800C02A1E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DB8FA8221E2AA53800B678C8 /* Communicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communicator.swift; sourceTree = "<group>"; };
+		DBBED7F21E2D1919000C660A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		DBBED7F41E2D1950000C660A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		DBBED7F61E2D1AF8000C660A /* MapDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailView.swift; sourceTree = "<group>"; };
 		DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		DBC7CE4E1E09053E00A6A057 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBC7CE5E1E097F6D00A6A057 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/CodingCafe-aplgnhxqjibpmpajyttptcwimgph/Build/Products/Debug-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
@@ -85,11 +95,40 @@
 				DB157D041E08C03800C02A1E /* ViewController.swift */,
 				DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */,
 				DB157D061E08C03800C02A1E /* Main.storyboard */,
+				DB32E7261E2475990092B708 /* View */,
+				DB32E7281E2475990092B708 /* Model */,
+				DB32E7271E2475990092B708 /* Controller */,
 				DB157D091E08C03800C02A1E /* Assets.xcassets */,
 				DB157D0B1E08C03800C02A1E /* LaunchScreen.storyboard */,
 				DB157D0E1E08C03800C02A1E /* Info.plist */,
 			);
 			path = CodingCafe;
+			sourceTree = "<group>";
+		};
+		DB32E7261E2475990092B708 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DBBED7F21E2D1919000C660A /* MapView.swift */,
+				DBBED7F61E2D1AF8000C660A /* MapDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DB32E7271E2475990092B708 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DBBED7F41E2D1950000C660A /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DB32E7281E2475990092B708 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DB09B4261E30FC7200A9A600 /* CoreEntity.swift */,
+				DB8FA8221E2AA53800B678C8 /* Communicator.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		EFC10996CE8D6BF6DE1EF1E2 /* Frameworks */ = {
@@ -233,8 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB8FA8231E2AA53800B678C8 /* Communicator.swift in Sources */,
+				DB09B4271E30FC7200A9A600 /* CoreEntity.swift in Sources */,
+				DBBED7F51E2D1950000C660A /* MapViewController.swift in Sources */,
 				DB157D051E08C03800C02A1E /* ViewController.swift in Sources */,
+				DBBED7F31E2D1919000C660A /* MapView.swift in Sources */,
 				DB157D031E08C03800C02A1E /* AppDelegate.swift in Sources */,
+				DBBED7F71E2D1AF8000C660A /* MapDetailView.swift in Sources */,
 				DBC5F54A1E110EB100C43A1E /* GoogleMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
