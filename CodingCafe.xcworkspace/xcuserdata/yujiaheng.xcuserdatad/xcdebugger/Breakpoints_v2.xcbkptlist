@@ -36,27 +36,12 @@
                   moduleName = "SwiftyJSON"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yujiaheng/Documents/OpenData/CodingCafe/Pods/SwiftyJSON/Source/SwiftyJSON.swift"
-                  timestampString = "506606654.299129"
+                  timestampString = "506607359.171264"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
                   endingLineNumber = "67"
-                  offsetFromSymbolStart = "4">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SwiftyJSON.JSON.(init (data : Foundation.Data, options : __ObjC.JSONSerialization.ReadingOptions, error : Swift.Optional&lt;Swift.AutoreleasingUnsafeMutablePointer&lt;Swift.Optional&lt;__ObjC.NSError&gt;&gt;&gt;) -&gt; SwiftyJSON.JSON).(default argument 2)"
-                  moduleName = "SwiftyJSON"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/yujiaheng/Documents/OpenData/CodingCafe/Pods/SwiftyJSON/Source/SwiftyJSON.swift"
-                  timestampString = "506606654.300604"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "4">
+                  offsetFromSymbolStart = "9">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -66,12 +51,12 @@
                   moduleName = "SwiftyJSON"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yujiaheng/Documents/OpenData/CodingCafe/Pods/SwiftyJSON/Source/SwiftyJSON.swift"
-                  timestampString = "506606654.301973"
+                  timestampString = "506607359.176465"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"
                   endingLineNumber = "69"
-                  offsetFromSymbolStart = "36">
+                  offsetFromSymbolStart = "40">
                </Location>
             </Locations>
          </BreakpointContent>
