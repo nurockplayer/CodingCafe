@@ -84,22 +84,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         label_Music.sizeToFit()
 
         var frame = image_Star1.frame
-        frame.origin.x = label_Wifi.frame.maxX + self.view.frame.size.width / 200
+        frame.origin.x = label_Wifi.frame.maxX + self.view.frame.size.width / 250
         image_Star1.frame = frame
         frame.origin.y = image_Star2.frame.origin.y
         image_Star2.frame = frame
         frame.origin.y = image_Star3.frame.origin.y
         image_Star3.frame = frame
         
-        frame.origin = CGPoint(x: label_Tasty.frame.maxX + self.view.frame.size.width / 200,
+        frame.origin = CGPoint(x: label_Tasty.frame.maxX + self.view.frame.size.width / 250,
                                y: image_Star4.frame.origin.y)
         image_Star4.frame = frame
         frame.origin.y = image_Star5.frame.origin.y
         image_Star5.frame = frame
         frame.origin.y = image_Star6.frame.origin.y
         image_Star6.frame = frame
-        
-        
         
         
          self.getCafeCoordinate()
@@ -250,27 +248,89 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             image_Star1.image = UIImage(named: "starItem4")
         case 5:
             image_Star1.image = UIImage(named: "starItem5")
-        case 6:
-            image_Star1.image = UIImage(named: "starItem6")
+        
         default:
             image_Star1.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["wifi"]!)! {
+        switch Int(dic["quiet"]!)! {
         case 1:
-            image_Star1.image = UIImage(named: "starItem1")
+            image_Star2.image = UIImage(named: "starItem1")
         case 2:
-            image_Star1.image = UIImage(named: "starItem2")
+            image_Star2.image = UIImage(named: "starItem2")
         case 3:
-            image_Star1.image = UIImage(named: "starItem3")
+            image_Star2.image = UIImage(named: "starItem3")
         case 4:
-            image_Star1.image = UIImage(named: "starItem4")
+            image_Star2.image = UIImage(named: "starItem4")
         case 5:
-            image_Star1.image = UIImage(named: "starItem5")
-        case 6:
-            image_Star1.image = UIImage(named: "starItem6")
+            image_Star2.image = UIImage(named: "starItem5")
+        
         default:
-            image_Star1.image = UIImage(named: "starItem0")
+            image_Star2.image = UIImage(named: "starItem0")
+        }
+        
+        switch Int(dic["seat"]!)! {
+        case 1:
+            image_Star3.image = UIImage(named: "starItem1")
+        case 2:
+            image_Star3.image = UIImage(named: "starItem2")
+        case 3:
+            image_Star3.image = UIImage(named: "starItem3")
+        case 4:
+            image_Star3.image = UIImage(named: "starItem4")
+        case 5:
+            image_Star3.image = UIImage(named: "starItem5")
+        
+        default:
+            image_Star3.image = UIImage(named: "starItem0")
+        }
+        
+        switch Int(dic["tasty"]!)! {
+        case 1:
+            image_Star4.image = UIImage(named: "starItem1")
+        case 2:
+            image_Star4.image = UIImage(named: "starItem2")
+        case 3:
+            image_Star4.image = UIImage(named: "starItem3")
+        case 4:
+            image_Star4.image = UIImage(named: "starItem4")
+        case 5:
+            image_Star4.image = UIImage(named: "starItem5")
+            
+        default:
+            image_Star4.image = UIImage(named: "starItem0")
+        }
+        
+        switch Int(dic["cheap"]!)! {
+        case 1:
+            image_Star5.image = UIImage(named: "starItem1")
+        case 2:
+            image_Star5.image = UIImage(named: "starItem2")
+        case 3:
+            image_Star5.image = UIImage(named: "starItem3")
+        case 4:
+            image_Star5.image = UIImage(named: "starItem4")
+        case 5:
+            image_Star5.image = UIImage(named: "starItem5")
+            
+        default:
+            image_Star5.image = UIImage(named: "starItem0")
+        }
+        
+        switch Int(dic["music"]!)! {
+        case 1:
+            image_Star6.image = UIImage(named: "starItem1")
+        case 2:
+            image_Star6.image = UIImage(named: "starItem2")
+        case 3:
+            image_Star6.image = UIImage(named: "starItem3")
+        case 4:
+            image_Star6.image = UIImage(named: "starItem4")
+        case 5:
+            image_Star6.image = UIImage(named: "starItem5")
+            
+        default:
+            image_Star6.image = UIImage(named: "starItem0")
         }
     }
     
