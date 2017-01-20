@@ -17,14 +17,10 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var detailView: UIView!
-    @IBOutlet var starView: UIView!
     
-    @IBOutlet var image_Star: UIImageView!
     
     @IBOutlet var label_Name: UILabel!
     @IBOutlet var label_Address: UILabel!
-    
-    
     
     @IBOutlet var label_Wifi: UILabel!
     @IBOutlet var label_Quiet: UILabel!
@@ -32,6 +28,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var label_Tasty: UILabel!
     @IBOutlet var label_Cheap: UILabel!
     @IBOutlet var label_Music: UILabel!
+    
+    @IBOutlet var image_Star1: UIImageView!
+    @IBOutlet var image_Star2: UIImageView!
+    @IBOutlet var image_Star3: UIImageView!
+    @IBOutlet var image_Star4: UIImageView!
+    @IBOutlet var image_Star5: UIImageView!
+    @IBOutlet var image_Star6: UIImageView!
+    
+    
     
     var locationManager : CLLocationManager!
     var selectAnnLocation : CLLocationCoordinate2D?
@@ -67,42 +72,33 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         mapView.frame = self.view.frame
         
-        self.detailView.frame = CGRect(x: self.detailView.frame.origin.x,
-                                       y: self.view.frame.maxY,
-                                       width: self.frame_DetailView.size.width,
-                                       height: self.frame_DetailView.size.height)
-        
-        
-        
-        let size = starView.frame.size
+        self.detailView.frame = CGRect(origin: CGPoint(x: self.detailView.frame.origin.x,
+                                                       y: self.view.frame.maxY),
+                                       size: self.frame_DetailView.size)
         
         label_Wifi.sizeToFit()
-        starView.frame = CGRect(origin: CGPoint(x: label_Wifi.frame.maxX, y: label_Wifi.frame.origin.y), size: size)
-
         label_Quiet.sizeToFit()
-        let sView1 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
-        sView1.frame = CGRect(origin: CGPoint(x: label_Quiet.frame.maxX, y: label_Quiet.frame.origin.y), size: size)
-        detailView.addSubview(sView1)
-
         label_Seat.sizeToFit()
-        let sView2 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
-        sView2.frame = CGRect(origin: CGPoint(x: label_Seat.frame.maxX, y: label_Seat.frame.origin.y), size: size)
-        detailView.addSubview(sView2)
-        
         label_Tasty.sizeToFit()
-        let sView3 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
-        sView3.frame = CGRect(origin: CGPoint(x: label_Tasty.frame.maxX, y: label_Tasty.frame.origin.y), size: size)
-        detailView.addSubview(sView3)
-
         label_Cheap.sizeToFit()
-        let sView4 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
-        sView4.frame = CGRect(origin: CGPoint(x: label_Cheap.frame.maxX, y: label_Cheap.frame.origin.y), size: size)
-        detailView.addSubview(sView4)
-
         label_Music.sizeToFit()
-        let sView5 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
-        sView5.frame = CGRect(origin: CGPoint(x: label_Music.frame.maxX, y: label_Music.frame.origin.y), size: size)
-        detailView.addSubview(sView5)
+
+        var frame = image_Star1.frame
+        frame.origin.x = label_Wifi.frame.maxX + self.view.frame.size.width / 200
+        image_Star1.frame = frame
+        frame.origin.y = image_Star2.frame.origin.y
+        image_Star2.frame = frame
+        frame.origin.y = image_Star3.frame.origin.y
+        image_Star3.frame = frame
+        
+        frame.origin = CGPoint(x: label_Tasty.frame.maxX + self.view.frame.size.width / 200,
+                               y: image_Star4.frame.origin.y)
+        image_Star4.frame = frame
+        frame.origin.y = image_Star5.frame.origin.y
+        image_Star5.frame = frame
+        frame.origin.y = image_Star6.frame.origin.y
+        image_Star6.frame = frame
+        
         
         
         
@@ -151,7 +147,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
                             
                             self.arrayDic += [dicString]
                             self.arrayTitle += [json[Int(key)!]["name"].string ?? ""]
-                            
+
                             
                             self.setupData(dic: dicString)
                         }
@@ -239,8 +235,43 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
         label_Address.text = dic["address"] ?? ""
         label_Address.sizeToFit()
-        //        btn_Navigation.frame.origin.x = label_Address.frame.maxX + 5
+        
         fbUrl = dic["url"] ?? ""
+        
+        
+        switch Int(dic["wifi"]!)! {
+        case 1:
+            image_Star1.image = UIImage(named: "starItem1")
+        case 2:
+            image_Star1.image = UIImage(named: "starItem2")
+        case 3:
+            image_Star1.image = UIImage(named: "starItem3")
+        case 4:
+            image_Star1.image = UIImage(named: "starItem4")
+        case 5:
+            image_Star1.image = UIImage(named: "starItem5")
+        case 6:
+            image_Star1.image = UIImage(named: "starItem6")
+        default:
+            image_Star1.image = UIImage(named: "starItem0")
+        }
+        
+        switch Int(dic["wifi"]!)! {
+        case 1:
+            image_Star1.image = UIImage(named: "starItem1")
+        case 2:
+            image_Star1.image = UIImage(named: "starItem2")
+        case 3:
+            image_Star1.image = UIImage(named: "starItem3")
+        case 4:
+            image_Star1.image = UIImage(named: "starItem4")
+        case 5:
+            image_Star1.image = UIImage(named: "starItem5")
+        case 6:
+            image_Star1.image = UIImage(named: "starItem6")
+        default:
+            image_Star1.image = UIImage(named: "starItem0")
+        }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
