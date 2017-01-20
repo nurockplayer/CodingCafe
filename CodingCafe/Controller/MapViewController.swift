@@ -17,15 +17,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var detailView: UIView!
+    @IBOutlet var starView: UIView!
     
-//    @IBOutlet var label_WIfi: UILabel!
-//    @IBOutlet var label_Seat: UILabel!
-//    @IBOutlet var label_Quiet: UILabel!
-//    @IBOutlet var label_Tasty: UILabel!
-//    @IBOutlet var label_Cheap: UILabel!
-//    @IBOutlet var label_Music: UILabel!
+    @IBOutlet var image_Star: UIImageView!
+    
     @IBOutlet var label_Name: UILabel!
     @IBOutlet var label_Address: UILabel!
+    
+    
+    
+    @IBOutlet var label_Wifi: UILabel!
+    @IBOutlet var label_Quiet: UILabel!
+    @IBOutlet var label_Seat: UILabel!
+    @IBOutlet var label_Tasty: UILabel!
+    @IBOutlet var label_Cheap: UILabel!
+    @IBOutlet var label_Music: UILabel!
     
     var locationManager : CLLocationManager!
     var selectAnnLocation : CLLocationCoordinate2D?
@@ -36,6 +42,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var arrayDic = [Dictionary<String, String>]()
     var fbUrl = ""
 
+    var frame_DetailView = CGRect()
     
     
     override func viewDidLoad() {
@@ -55,8 +62,49 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        frame_DetailView = detailView.frame
+
+        mapView.frame = self.view.frame
         
-//        detailView.isHidden = true
+        self.detailView.frame = CGRect(x: self.detailView.frame.origin.x,
+                                       y: self.view.frame.maxY,
+                                       width: self.frame_DetailView.size.width,
+                                       height: self.frame_DetailView.size.height)
+        
+        
+        
+        let size = starView.frame.size
+        
+        label_Wifi.sizeToFit()
+        starView.frame = CGRect(origin: CGPoint(x: label_Wifi.frame.maxX, y: label_Wifi.frame.origin.y), size: size)
+
+        label_Quiet.sizeToFit()
+        let sView1 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
+        sView1.frame = CGRect(origin: CGPoint(x: label_Quiet.frame.maxX, y: label_Quiet.frame.origin.y), size: size)
+        detailView.addSubview(sView1)
+
+        label_Seat.sizeToFit()
+        let sView2 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
+        sView2.frame = CGRect(origin: CGPoint(x: label_Seat.frame.maxX, y: label_Seat.frame.origin.y), size: size)
+        detailView.addSubview(sView2)
+        
+        label_Tasty.sizeToFit()
+        let sView3 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
+        sView3.frame = CGRect(origin: CGPoint(x: label_Tasty.frame.maxX, y: label_Tasty.frame.origin.y), size: size)
+        detailView.addSubview(sView3)
+
+        label_Cheap.sizeToFit()
+        let sView4 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
+        sView4.frame = CGRect(origin: CGPoint(x: label_Cheap.frame.maxX, y: label_Cheap.frame.origin.y), size: size)
+        detailView.addSubview(sView4)
+
+        label_Music.sizeToFit()
+        let sView5 = NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: starView)) as! UIView
+        sView5.frame = CGRect(origin: CGPoint(x: label_Music.frame.maxX, y: label_Music.frame.origin.y), size: size)
+        detailView.addSubview(sView5)
+        
+        
         
          self.getCafeCoordinate()
     }
@@ -172,27 +220,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         selectAnnLocation = view.annotation!.coordinate
         annationTitle = view.annotation!.title!
         
-        detailView.isHidden = false
-        UIView.animate(withDuration: 0.1) {
+
+        UIView.animate(withDuration: 0.2) {
+            self.detailView.frame = self.frame_DetailView
+            
             var frame = mapView.frame
-            frame.size.height = self.detailView.frame.origin.y
+            frame.size.height = self.frame_DetailView.origin.y
             mapView.frame = frame
         }
         
         
-        print(arrayTitle.count)
         let indexNumber = arrayTitle.index(of: annationTitle!)
         
         let dic = arrayDic[indexNumber!]
         
         label_Name.text = dic["name"] ?? ""
         label_Name.sizeToFit()
-//        label_WIfi.text = dic["wifi"] ?? ""
-//        label_Seat.text = dic["seat"] ?? ""
-//        label_Quiet.text = dic["quiet"] ?? ""
-//        label_Tasty.text = dic["tasty"] ?? ""
-//        label_Cheap.text = dic["cheap"] ?? ""
-//        label_Music.text = dic["music"] ?? ""
+
         label_Address.text = dic["address"] ?? ""
         label_Address.sizeToFit()
         //        btn_Navigation.frame.origin.x = label_Address.frame.maxX + 5
@@ -201,13 +245,23 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
+            
             mapView.frame = self.view.frame
+            
+            self.detailView.frame = CGRect(x: self.detailView.frame.origin.x,
+                                           y: self.view.frame.maxY,
+                                           width: self.frame_DetailView.size.width,
+                                           height: self.frame_DetailView.size.height)
+            
+            
         }) { (finished) in
 //            self.detailView.isHidden = true
         }
         
     }
+    
+    
     
     
     @IBAction func btn_FB(_ sender: Any) {

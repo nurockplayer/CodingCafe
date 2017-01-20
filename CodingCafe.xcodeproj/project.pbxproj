@@ -18,7 +18,6 @@
 		DBBED7F31E2D1919000C660A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBED7F21E2D1919000C660A /* MapView.swift */; };
 		DBBED7F51E2D1950000C660A /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBED7F41E2D1950000C660A /* MapViewController.swift */; };
 		DBBED7F71E2D1AF8000C660A /* MapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBED7F61E2D1AF8000C660A /* MapDetailView.swift */; };
-		DBC5F54A1E110EB100C43A1E /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */; };
 		DBC7CE4F1E09053E00A6A057 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE4E1E09053E00A6A057 /* MapKit.framework */; };
 		DBC7CE5F1E097F6D00A6A057 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE5E1E097F6D00A6A057 /* Alamofire.framework */; };
 		DBC7CE611E097F7000A6A057 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE601E097F7000A6A057 /* SwiftyJSON.framework */; };
@@ -39,7 +38,6 @@
 		DBBED7F21E2D1919000C660A /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		DBBED7F41E2D1950000C660A /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		DBBED7F61E2D1AF8000C660A /* MapDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapDetailView.swift; sourceTree = "<group>"; };
-		DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		DBC7CE4E1E09053E00A6A057 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBC7CE5E1E097F6D00A6A057 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/CodingCafe-aplgnhxqjibpmpajyttptcwimgph/Build/Products/Debug-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		DBC7CE601E097F7000A6A057 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/CodingCafe-aplgnhxqjibpmpajyttptcwimgph/Build/Products/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 			children = (
 				DB157D021E08C03800C02A1E /* AppDelegate.swift */,
 				DB157D041E08C03800C02A1E /* ViewController.swift */,
-				DBC5F5491E110EB100C43A1E /* GoogleMapViewController.swift */,
 				DB157D061E08C03800C02A1E /* Main.storyboard */,
 				DB32E7261E2475990092B708 /* View */,
 				DB32E7281E2475990092B708 /* Model */,
@@ -279,7 +276,6 @@
 				DBBED7F31E2D1919000C660A /* MapView.swift in Sources */,
 				DB157D031E08C03800C02A1E /* AppDelegate.swift in Sources */,
 				DBBED7F71E2D1AF8000C660A /* MapDetailView.swift in Sources */,
-				DBC5F54A1E110EB100C43A1E /* GoogleMapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
