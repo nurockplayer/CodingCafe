@@ -4,14 +4,6 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
@@ -44,7 +36,7 @@
                   moduleName = "SwiftyJSON"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yujiaheng/Documents/OpenData/CodingCafe/Pods/SwiftyJSON/Source/SwiftyJSON.swift"
-                  timestampString = "506604055.509976"
+                  timestampString = "506606654.299129"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -59,7 +51,7 @@
                   moduleName = "SwiftyJSON"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yujiaheng/Documents/OpenData/CodingCafe/Pods/SwiftyJSON/Source/SwiftyJSON.swift"
-                  timestampString = "506604055.512661"
+                  timestampString = "506606654.300604"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "67"
@@ -74,7 +66,7 @@
                   moduleName = "SwiftyJSON"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yujiaheng/Documents/OpenData/CodingCafe/Pods/SwiftyJSON/Source/SwiftyJSON.swift"
-                  timestampString = "506604055.514818"
+                  timestampString = "506606654.301973"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "69"

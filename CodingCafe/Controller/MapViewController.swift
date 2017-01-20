@@ -236,98 +236,52 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         fbUrl = dic["url"] ?? ""
         
+        print(dic["wifi"]!,dic["quiet"]!,dic["seat"]!,dic["tasty"]!,dic["cheap"]!,dic["music"]!)
         
-        switch Int(dic["wifi"]!)! {
-        case 1:
-            image_Star1.image = UIImage(named: "starItem1")
-        case 2:
-            image_Star1.image = UIImage(named: "starItem2")
-        case 3:
-            image_Star1.image = UIImage(named: "starItem3")
-        case 4:
-            image_Star1.image = UIImage(named: "starItem4")
-        case 5:
-            image_Star1.image = UIImage(named: "starItem5")
-        
+        switch Int(dic["wifi"] ?? "0")! {
+            
+        case 1...5:
+
+            image_Star1.image = UIImage(named: "starItem\(dic["wifi"]!)")
         default:
             image_Star1.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["quiet"]!)! {
-        case 1:
-            image_Star2.image = UIImage(named: "starItem1")
-        case 2:
-            image_Star2.image = UIImage(named: "starItem2")
-        case 3:
-            image_Star2.image = UIImage(named: "starItem3")
-        case 4:
-            image_Star2.image = UIImage(named: "starItem4")
-        case 5:
-            image_Star2.image = UIImage(named: "starItem5")
-        
+        switch Int(dic["quiet"] ?? "0")! {
+            
+        case 1...5:
+            image_Star2.image = UIImage(named: "starItem\(dic["quiet"]!)")
         default:
             image_Star2.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["seat"]!)! {
+        switch Int(dic["seat"] ?? "0")! {
         case 1:
-            image_Star3.image = UIImage(named: "starItem1")
-        case 2:
-            image_Star3.image = UIImage(named: "starItem2")
-        case 3:
-            image_Star3.image = UIImage(named: "starItem3")
-        case 4:
-            image_Star3.image = UIImage(named: "starItem4")
-        case 5:
-            image_Star3.image = UIImage(named: "starItem5")
+            image_Star3.image = UIImage(named: "starItem\(dic["seat"]!)")
         
         default:
             image_Star3.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["tasty"]!)! {
-        case 1:
-            image_Star4.image = UIImage(named: "starItem1")
-        case 2:
-            image_Star4.image = UIImage(named: "starItem2")
-        case 3:
-            image_Star4.image = UIImage(named: "starItem3")
-        case 4:
-            image_Star4.image = UIImage(named: "starItem4")
-        case 5:
-            image_Star4.image = UIImage(named: "starItem5")
+        switch Int(dic["tasty"] ?? "0")! {
+        case 1...5:
+            image_Star4.image = UIImage(named: "starItem\(dic["tasty"]!)")
             
         default:
             image_Star4.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["cheap"]!)! {
-        case 1:
-            image_Star5.image = UIImage(named: "starItem1")
-        case 2:
-            image_Star5.image = UIImage(named: "starItem2")
-        case 3:
-            image_Star5.image = UIImage(named: "starItem3")
-        case 4:
-            image_Star5.image = UIImage(named: "starItem4")
-        case 5:
-            image_Star5.image = UIImage(named: "starItem5")
+        switch Int(dic["cheap"] ?? "0")! {
+        case 1...5:
+            image_Star5.image = UIImage(named: "starItem\(dic["cheap"]!)")
             
         default:
             image_Star5.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["music"]!)! {
+        switch Int(dic["music"] ?? "0")! {
         case 1:
-            image_Star6.image = UIImage(named: "starItem1")
-        case 2:
-            image_Star6.image = UIImage(named: "starItem2")
-        case 3:
-            image_Star6.image = UIImage(named: "starItem3")
-        case 4:
-            image_Star6.image = UIImage(named: "starItem4")
-        case 5:
-            image_Star6.image = UIImage(named: "starItem5")
+            image_Star6.image = UIImage(named: "starItem\(dic["music"]!)")
             
         default:
             image_Star6.image = UIImage(named: "starItem0")
