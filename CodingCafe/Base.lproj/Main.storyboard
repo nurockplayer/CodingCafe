@@ -184,10 +184,10 @@
             </objects>
             <point key="canvasLocation" x="920.79999999999995" y="138.98050974512745"/>
         </scene>
-        <!--View Controller-->
+        <!--關於找咖啡-->
         <scene sceneID="yJj-g2-rIP">
             <objects>
-                <viewController id="bgP-fd-QLW" sceneMemberID="viewController">
+                <viewController id="bgP-fd-QLW" customClass="AboutViewController" customModule="CodingCafe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MFE-Uv-eKd"/>
                         <viewControllerLayoutGuide type="bottom" id="s0X-fh-Lot"/>
@@ -201,14 +201,58 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n5r-gU-8gH">
+                                <rect key="frame" x="0.0" y="64" width="375" height="184"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lX4-pd-uHh">
+                                <rect key="frame" x="0.0" y="249" width="375" height="369"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="WdW-ca-dny">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WdW-ca-dny" id="yoK-3v-W8v">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="bgP-fd-QLW" id="qgZ-Mm-1GF"/>
+                                    <outlet property="delegate" destination="bgP-fd-QLW" id="lgv-8x-QQC"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Buj-bg-Nze"/>
+                    <navigationItem key="navigationItem" title="關於找咖啡" id="Buj-bg-Nze"/>
+                    <connections>
+                        <outlet property="tableView" destination="lX4-pd-uHh" id="Pv8-Yt-DWh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5w-lO-VLZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3391" y="467"/>
+            <point key="canvasLocation" x="3901.5999999999999" y="142.57871064467767"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="e1i-Z1-JuO">
+            <objects>
+                <viewController id="qx8-fb-T3a" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gtX-Zr-PmS"/>
+                        <viewControllerLayoutGuide type="bottom" id="pIH-kq-PK6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4bb-Np-E6x">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="McZ-kK-SqH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4652" y="143"/>
         </scene>
         <!--找咖啡-->
         <scene sceneID="dnm-Ql-0wS">
@@ -222,6 +266,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oS2-5p-557">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2sw-j1-frb" id="gHK-ko-aRf"/>
+                                </connections>
+                            </mapView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TtK-Fl-kvM">
                                 <rect key="frame" x="0.0" y="418" width="375" height="249"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
@@ -253,21 +304,21 @@
                                         <rect key="frame" x="0.0" y="64" width="375" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAn-Ma-lo9">
+                                                <rect key="frame" x="8" y="8" width="22" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" backgroundImage="fill137"/>
+                                                <connections>
+                                                    <action selector="btn_Navigation:" destination="2sw-j1-frb" eventType="touchUpInside" id="7vM-kI-RnP"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dp6-sU-bm0">
-                                                <rect key="frame" x="15" y="8" width="326" height="21"/>
+                                                <rect key="frame" x="38" y="8" width="326" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAn-Ma-lo9">
-                                                <rect key="frame" x="349" y="7" width="18" height="22"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" image="fill137"/>
-                                                <connections>
-                                                    <action selector="btn_Navigation:" destination="2sw-j1-frb" eventType="touchUpInside" id="7vM-kI-RnP"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.88627450980392153" green="0.85882352941176465" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -347,13 +398,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="oS2-5p-557">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="2sw-j1-frb" id="gHK-ko-aRf"/>
-                                </connections>
-                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -406,7 +450,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3389.5999999999999" y="-192.05397301349328"/>
+            <point key="canvasLocation" x="3902" y="-1265"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hDa-aD-NWD">
@@ -420,12 +464,33 @@
                     </tabBar>
                     <connections>
                         <segue destination="Mjo-2a-cKf" kind="relationship" relationship="viewControllers" id="wBd-qi-KXw"/>
+                        <segue destination="MMN-ZA-scg" kind="relationship" relationship="viewControllers" id="G4g-Gq-z9E"/>
                         <segue destination="nBF-KC-At6" kind="relationship" relationship="viewControllers" id="E8y-Nt-ao7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yql-Qr-YqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1726" y="135"/>
+        </scene>
+        <!--新增店家-->
+        <scene sceneID="6BF-NV-Q2p">
+            <objects>
+                <viewController id="MMN-ZA-scg" customClass="AddNewDataWebViewController" customModule="CodingCafe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4d5-8Q-QeI"/>
+                        <viewControllerLayoutGuide type="bottom" id="TtY-gL-z9J"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Vql-FR-yKz">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="新增店家" id="IHQ-oW-q2N"/>
+                    <navigationItem key="navigationItem" id="4We-gd-4f5"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VgF-Y5-xb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3188" y="-574"/>
         </scene>
         <!--找咖啡去-->
         <scene sceneID="Tk7-cE-HNp">
@@ -446,7 +511,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rom-4g-XZY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2676" y="-192.05397301349328"/>
+            <point key="canvasLocation" x="3188" y="-1265"/>
         </scene>
         <!--關於找咖啡-->
         <scene sceneID="nbp-xF-vlG">
@@ -454,7 +519,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nBF-KC-At6" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="關於找咖啡" image="abouthover" id="c3P-cf-lZO"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="dMF-ZR-1bK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="dMF-ZR-1bK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -465,7 +530,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qd3-Qk-p7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2676" y="462.8185907046477"/>
+            <point key="canvasLocation" x="3188" y="139"/>
         </scene>
     </scenes>
     <resources>

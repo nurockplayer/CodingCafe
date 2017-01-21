@@ -198,8 +198,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         var cafeAnnotation = mapView.dequeueReusableAnnotationView(withIdentifier: "Pin")
         if cafeAnnotation == nil {
-            cafeAnnotation = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
+            cafeAnnotation = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
         }
+        
+        cafeAnnotation?.annotation = annotation
+        cafeAnnotation?.image = UIImage(named: "CafePin")
         
         //        let btn_Navigation = UIButton(type: .detailDisclosure)
         //        btn_Navigation.addTarget(self, action: #selector(btn_NavigationPress), for: .touchUpInside)
@@ -238,7 +241,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         print(dic["wifi"]!,dic["quiet"]!,dic["seat"]!,dic["tasty"]!,dic["cheap"]!,dic["music"]!)
         
-        switch Int(dic["wifi"] ?? "0")! {
+        switch Float(dic["wifi"] ?? "0")! {
             
         case 1...5:
 
@@ -247,7 +250,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             image_Star1.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["quiet"] ?? "0")! {
+        switch Float(dic["quiet"] ?? "0")! {
             
         case 1...5:
             image_Star2.image = UIImage(named: "starItem\(dic["quiet"]!)")
@@ -255,15 +258,15 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             image_Star2.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["seat"] ?? "0")! {
-        case 1:
+        switch Float(dic["seat"] ?? "0")! {
+        case 1...5:
             image_Star3.image = UIImage(named: "starItem\(dic["seat"]!)")
         
         default:
             image_Star3.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["tasty"] ?? "0")! {
+        switch Float(dic["tasty"] ?? "0")! {
         case 1...5:
             image_Star4.image = UIImage(named: "starItem\(dic["tasty"]!)")
             
@@ -271,7 +274,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             image_Star4.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["cheap"] ?? "0")! {
+        switch Float(dic["cheap"] ?? "0")! {
         case 1...5:
             image_Star5.image = UIImage(named: "starItem\(dic["cheap"]!)")
             
@@ -279,8 +282,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             image_Star5.image = UIImage(named: "starItem0")
         }
         
-        switch Int(dic["music"] ?? "0")! {
-        case 1:
+        switch Float(dic["music"] ?? "0")! {
+        case 1...5:
             image_Star6.image = UIImage(named: "starItem\(dic["music"]!)")
             
         default:
