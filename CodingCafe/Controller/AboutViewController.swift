@@ -25,9 +25,9 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
                                 "iconShapeWorld",]
     
     var array_Author = [" IOS UI 設計 ：Una \n IOS APP 作者 ：巧克力 \n 目前任職於Dakuo數創中心的資雲數位 歡迎來找我泡茶聊天",
-                        "意見反饋",
+                        "回報問題",
                         "Github",
-                        "評分"]
+                        "給好評"]
     
     var array_AuthorImage = ["",
                             "iconShapeMail",

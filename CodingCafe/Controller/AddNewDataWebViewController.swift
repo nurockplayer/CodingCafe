@@ -21,6 +21,7 @@ class AddNewDataWebViewController: UIViewController, UIWebViewDelegate {
         
         activityIndicator.activityIndicatorViewStyle = .gray
         activityIndicator.center=self.view.center
+        activityIndicator.hidesWhenStopped = true
         
         let urlString = "https://cafenomad.tw/contribute"
         let myRequest = URLRequest(url: URL(string: urlString)!);

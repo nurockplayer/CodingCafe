@@ -201,7 +201,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n5r-gU-8gH">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="AboutImage" translatesAutoresizingMaskIntoConstraints="NO" id="n5r-gU-8gH">
                                 <rect key="frame" x="0.0" y="62" width="375" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -227,7 +227,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJl-HU-noB">
                                 <rect key="frame" x="166" y="206" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -526,7 +526,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="新增店家" id="IHQ-oW-q2N"/>
+                    <tabBarItem key="tabBarItem" title="新增店家" image="iconTabBar_Add" id="IHQ-oW-q2N"/>
                     <navigationItem key="navigationItem" id="4We-gd-4f5"/>
                     <connections>
                         <outlet property="activityIndicator" destination="8w8-te-9Rb" id="7pX-A1-BL1"/>
@@ -541,7 +541,7 @@
         <scene sceneID="Tk7-cE-HNp">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mjo-2a-cKf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="找咖啡去" image="cafe" id="EJh-hV-xDd"/>
+                    <tabBarItem key="tabBarItem" title="找咖啡去" image="iconTabBar_Cafe" id="EJh-hV-xDd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="B7h-ZW-REd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -562,7 +562,7 @@
         <scene sceneID="nbp-xF-vlG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nBF-KC-At6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="關於找咖啡" image="abouthover" id="c3P-cf-lZO">
+                    <tabBarItem key="tabBarItem" title="關於找咖啡" image="iconTabBar_About" id="c3P-cf-lZO">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -581,11 +581,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="abouthover" width="51" height="40"/>
-        <image name="cafe" width="41" height="42"/>
+        <image name="AboutImage" width="375" height="180"/>
         <image name="fbIcon" width="25" height="25"/>
         <image name="fill137" width="18" height="18"/>
         <image name="fill275" width="23" height="22"/>
+        <image name="iconTabBar_About" width="27" height="27"/>
+        <image name="iconTabBar_Add" width="27" height="27"/>
+        <image name="iconTabBar_Cafe" width="27" height="27"/>
         <image name="starItem0" width="85" height="16"/>
     </resources>
 </document>
