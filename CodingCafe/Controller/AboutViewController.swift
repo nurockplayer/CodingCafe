@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class AboutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AboutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var tableView: UITableView!
@@ -139,7 +140,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             switch indexPath.row {
             case 1:
                 mail()
-                
+                break
             case 2:
                 vc.urlString = "https://github.com/nurockplayer/CodingCafe"
             case 3:
@@ -158,13 +159,20 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     
     func mail() {
-        let to = "nurockplayer@gmail.com"
-        let subject = "信件主旨"
+        let mailComposerVC = MFMailComposeViewController()
         
-        let mail = "mialto:\(to)?subject=\(subject)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        mailComposerVC.mailComposeDelegate = self
+        mailComposerVC.setToRecipients(["nurockplayer@gmail.com"])
+        mailComposerVC.setSubject("找咖啡意見反饋")
+        mailComposerVC.setMessageBody("機型： \n 系統版本：", isHTML: false)
         
-        let url = URL(string: mail!)
-        UIApplication.shared.openURL(url!)
+        show(mailComposerVC, sender: nil)
+    }
+    
+
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        
+        controller.dismiss(animated: true, completion: nil)
     }
     
     /*
