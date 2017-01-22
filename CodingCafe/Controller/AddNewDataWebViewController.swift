@@ -8,13 +8,19 @@
 
 import UIKit
 
-class AddNewDataWebViewController: UIViewController {
+class AddNewDataWebViewController: UIViewController, UIWebViewDelegate {
 
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var webView: UIWebView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let webView = UIWebView(frame: self.view.frame)
-        self.view.addSubview(webView)
+        webView.delegate = self
+        
+        activityIndicator.activityIndicatorViewStyle = .gray
+        activityIndicator.center=self.view.center
         
         let urlString = "https://cafenomad.tw/contribute"
         let myRequest = URLRequest(url: URL(string: urlString)!);
@@ -22,6 +28,18 @@ class AddNewDataWebViewController: UIViewController {
         webView.loadRequest(myRequest);
 
     }
+
+    
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        activityIndicator.startAnimating()
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        
+        activityIndicator.stopAnimating()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

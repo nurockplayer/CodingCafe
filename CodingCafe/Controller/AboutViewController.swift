@@ -10,7 +10,11 @@ import UIKit
 
 class AboutViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var tableView: UITableView!
+    
+    @IBOutlet var label_Version: UILabel!
+    
     
     var array_CafeNomad = ["開源資料是由台灣各地的 cafe nomad 社群，一起整理的咖啡廳清單與地圖。",
                            "Cafe Nomad 粉絲專頁",
@@ -33,17 +37,29 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var frame = imageView.frame
+        frame.origin.y = navigationController!.navigationBar.frame.maxY
+        imageView.frame = frame
+        
+        frame = tableView.frame
+        frame.origin.y = imageView.frame.maxY
+        tableView.frame = frame
+        
+        imageView.backgroundColor = UIColor.brown
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
 //        tableView.footerView(forSection: .allZeros)
         tableView.separatorInset = .init(top: 10, left: 10, bottom: 10, right: 10)
+        tableView.tableHeaderView?.backgroundColor = UIColor.darkGray
 
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
+        label_Version.text = "v \(version!)"
+        label_Version.sizeToFit()
     }
     
     override func didReceiveMemoryWarning() {
@@ -95,7 +111,7 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         switch section {
         case 1:
-            return 20
+            return 10 / 667 * self.view.bounds.height
         default:
             return 0
         }
@@ -122,8 +138,8 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             
             switch indexPath.row {
             case 1:
+                mail()
                 
-                break
             case 2:
                 vc.urlString = "https://github.com/nurockplayer/CodingCafe"
             case 3:
@@ -134,7 +150,23 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         default:
             break
         }
+        
+        if vc.urlString != "" {
+            show(vc, sender: nil)
+        }
     }
+    
+    
+    func mail() {
+        let to = "nurockplayer@gmail.com"
+        let subject = "信件主旨"
+        
+        let mail = "mialto:\(to)?subject=\(subject)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        
+        let url = URL(string: mail!)
+        UIApplication.shared.openURL(url!)
+    }
+    
     /*
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         <#code#>

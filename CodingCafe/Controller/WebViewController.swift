@@ -8,21 +8,41 @@
 
 import UIKit
 
-class WebViewController: UIViewController {
+class WebViewController: UIViewController, UIWebViewDelegate {
 
     var urlString = ""
+    
+    var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         let webView = UIWebView(frame: self.view.frame)
+        webView.delegate = self
         self.view.addSubview(webView)
         
         
-        let myRequest = URLRequest(url: URL(string: urlString)!);
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicator.sizeToFit()
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
         
+        let myRequest = URLRequest(url: URL(string: urlString)!);
         webView.loadRequest(myRequest);
     }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        
+        activityIndicator.startAnimating()
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        
+        activityIndicator.stopAnimating()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

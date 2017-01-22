@@ -202,7 +202,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n5r-gU-8gH">
-                                <rect key="frame" x="0.0" y="64" width="375" height="184"/>
+                                <rect key="frame" x="0.0" y="62" width="375" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lX4-pd-uHh">
@@ -224,11 +224,20 @@
                                     <outlet property="delegate" destination="bgP-fd-QLW" id="lgv-8x-QQC"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RJl-HU-noB">
+                                <rect key="frame" x="166" y="206" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="關於找咖啡" id="Buj-bg-Nze"/>
                     <connections>
+                        <outlet property="imageView" destination="n5r-gU-8gH" id="JG3-Xo-dIk"/>
+                        <outlet property="label_Version" destination="RJl-HU-noB" id="ujd-Ob-yHc"/>
                         <outlet property="tableView" destination="lX4-pd-uHh" id="Pv8-Yt-DWh"/>
                     </connections>
                 </viewController>
@@ -236,10 +245,10 @@
             </objects>
             <point key="canvasLocation" x="3901.5999999999999" y="142.57871064467767"/>
         </scene>
-        <!--View Controller-->
+        <!--Web View Controller-->
         <scene sceneID="e1i-Z1-JuO">
             <objects>
-                <viewController id="qx8-fb-T3a" sceneMemberID="viewController">
+                <viewController id="qx8-fb-T3a" customClass="WebViewController" customModule="CodingCafe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gtX-Zr-PmS"/>
                         <viewControllerLayoutGuide type="bottom" id="pIH-kq-PK6"/>
@@ -247,12 +256,30 @@
                     <view key="view" contentMode="scaleToFill" id="4bb-Np-E6x">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="swl-tZ-2GT">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="qx8-fb-T3a" id="rEs-uG-8sX"/>
+                                </connections>
+                            </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iZZ-3F-eai">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="iZZ-3F-eai" id="baP-BQ-Ux7"/>
+                        <outlet property="webView" destination="swl-tZ-2GT" id="mvI-aD-QR1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="McZ-kK-SqH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4652" y="143"/>
+            <point key="canvasLocation" x="4652" y="142.57871064467767"/>
         </scene>
         <!--找咖啡-->
         <scene sceneID="dnm-Ql-0wS">
@@ -483,14 +510,32 @@
                     <view key="view" contentMode="scaleToFill" id="Vql-FR-yKz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2k-Wf-Vly">
+                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="delegate" destination="MMN-ZA-scg" id="cLz-Xd-nHm"/>
+                                </connections>
+                            </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8w8-te-9Rb">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="新增店家" id="IHQ-oW-q2N"/>
                     <navigationItem key="navigationItem" id="4We-gd-4f5"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="8w8-te-9Rb" id="7pX-A1-BL1"/>
+                        <outlet property="webView" destination="j2k-Wf-Vly" id="Gpw-0b-om7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VgF-Y5-xb8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3188" y="-574"/>
+            <point key="canvasLocation" x="3188" y="-574.36281859070471"/>
         </scene>
         <!--找咖啡去-->
         <scene sceneID="Tk7-cE-HNp">
@@ -517,7 +562,9 @@
         <scene sceneID="nbp-xF-vlG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nBF-KC-At6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="關於找咖啡" image="abouthover" id="c3P-cf-lZO"/>
+                    <tabBarItem key="tabBarItem" title="關於找咖啡" image="abouthover" id="c3P-cf-lZO">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="dMF-ZR-1bK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
