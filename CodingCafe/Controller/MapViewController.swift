@@ -284,6 +284,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         default:
             image_Star6.image = UIImage(named: "starItem0")
         }
+        
+//        mapView.setCenter(selectAnnLocation!, animated: false)
+
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {

@@ -139,7 +139,9 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
             case 2:
                 vc.urlString = "https://github.com/nurockplayer/CodingCafe"
             case 3:
-                vc.urlString = ""
+                let urlString = "http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=1189896233&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8"
+                UIApplication.shared.openURL(URL(string: urlString)!)
+                break
             default:
                 break
             }
