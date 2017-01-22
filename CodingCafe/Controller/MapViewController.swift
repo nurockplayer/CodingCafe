@@ -204,10 +204,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         cafeAnnotation?.annotation = annotation
         cafeAnnotation?.image = UIImage(named: "CafePin")
         
-        //        let btn_Navigation = UIButton(type: .detailDisclosure)
-        //        btn_Navigation.addTarget(self, action: #selector(btn_NavigationPress), for: .touchUpInside)
-        //        cafeAnnotation?.rightCalloutAccessoryView = btn_Navigation
-        //        cafeAnnotation?.canShowCallout = true
         
         return cafeAnnotation
     }
@@ -239,7 +235,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         fbUrl = dic["url"] ?? ""
         
-        print(dic["wifi"]!,dic["quiet"]!,dic["seat"]!,dic["tasty"]!,dic["cheap"]!,dic["music"]!)
         
         switch Float(dic["wifi"] ?? "0")! {
             
@@ -304,7 +299,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
             
             
         }) { (finished) in
-//            self.detailView.isHidden = true
+
         }
         
     }

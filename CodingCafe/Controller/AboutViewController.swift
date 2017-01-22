@@ -38,14 +38,6 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var frame = imageView.frame
-        frame.origin.y = navigationController!.navigationBar.frame.maxY
-        imageView.frame = frame
-        
-        frame = tableView.frame
-        frame.origin.y = imageView.frame.maxY
-        tableView.frame = frame
-        
         imageView.backgroundColor = UIColor.brown
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -118,7 +110,10 @@ class AboutViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
         
         let vc = WebViewController()
         
