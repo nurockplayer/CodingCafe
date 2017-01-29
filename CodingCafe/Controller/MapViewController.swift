@@ -17,7 +17,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     var communicator = Communicator()
     var cafeInfo = cafeInformation()
-    
+
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var detailView: UIView!
     
@@ -105,11 +105,29 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         image_Star6.frame = frame
         
         
-//        communicator.getCafeCoordinate { 
-//            self.setupData(dic: <#T##Dictionary<String, String>#>)
-//        }
+        communicator.getCafeCoordinate { (resultValue, error) in
+            if let value = resultValue {
+                
+                DispatchQueue.global().async {
+                    
+                    let json = JSON(value)
+                    
+                    for (key,_):(String, JSON) in json {
+                        
+                        let dicValue = json[Int(key)!].dictionaryValue
+                        var dicString : Dictionary<String, String> = [:]
+                        dicValue.forEach { dicString[$0.0] = String(describing: $0.1) }
+                        
+                        self.arrayDic += [dicString]
+                        self.arrayTitle += [json[Int(key)!]["name"].string ?? ""]
+                        
+                        
+                        self.setupData(dic: dicString)
+                    }
+                }
+            }
+        }
         
-            self.getCafeCoordinate()
     
     }
     
@@ -135,37 +153,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     }
     
     
-    func getCafeCoordinate() {
-        
-        Alamofire.request(API, encoding: JSONEncoding.default).responseJSON { (response) in
-            switch response.result.isSuccess {
-            case true:
-                
-                if let value = response.result.value {
-                    
-                    DispatchQueue.global().async {
-                        
-                        let json = JSON(value)
-                        
-                        for (key,_):(String, JSON) in json {
-                            
-                            let dicValue = json[Int(key)!].dictionaryValue
-                            var dicString : Dictionary<String, String> = [:]
-                            dicValue.forEach { dicString[$0.0] = String(describing: $0.1) }
-                            
-                            self.arrayDic += [dicString]
-                            self.arrayTitle += [json[Int(key)!]["name"].string ?? ""]
-
-                            
-                            self.setupData(dic: dicString)
-                        }
-                    }
-                }
-            case false:
-                print("error: \(response.result.error)")
-            }
-        }
-    }
     
     func setupData(dic: Dictionary<String, String>) {
         

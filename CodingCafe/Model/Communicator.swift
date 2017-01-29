@@ -28,31 +28,12 @@ class Communicator: NSObject {
     let API = "https://cafenomad.tw/api/v1.0/cafes"
     
     
-    func getCafeCoordinate(completion: @escaping () -> ()) {
+    func getCafeCoordinate(completionHandler: @escaping (Any?, Error?) -> ()) {
         
         Alamofire.request(API, encoding: JSONEncoding.default).responseJSON { (response) in
             switch response.result.isSuccess {
             case true:
-                
-                if let value = response.result.value {
-                    
-                    DispatchQueue.global().async {
-                        
-                        let json = JSON(value)
-                        
-                        for (key,_):(String, JSON) in json {
-                            
-                            let dicValue = json[Int(key)!].dictionaryValue
-                            var dicString : Dictionary<String, String> = [:]
-                            dicValue.forEach { dicString[$0.0] = String(describing: $0.1) }
-                            
-                            cafeInformation.arrayDic += [dicString]
-                            cafeInformation.arrayTitle += [json[Int(key)!]["name"].string ?? ""]
-                            
-//                            self.setupData(dic: dicString)
-                        }
-                    }
-                }
+                completionHandler(response.result.value , nil)
             case false:
                 print("error: \(response.result.error)")
             }
