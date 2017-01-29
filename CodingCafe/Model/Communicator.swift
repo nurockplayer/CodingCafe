@@ -24,11 +24,11 @@ class Communicator: NSObject {
         return _SingletonCommunicator!
     }
     
-/*
-    let API = "https://cafenomad.tw/api/v1.0/cafes"
 
+    let API = "https://cafenomad.tw/api/v1.0/cafes"
     
-    func getCafeCoordinate() {
+    
+    func getCafeCoordinate(completion: @escaping () -> ()) {
         
         Alamofire.request(API, encoding: JSONEncoding.default).responseJSON { (response) in
             switch response.result.isSuccess {
@@ -49,7 +49,6 @@ class Communicator: NSObject {
                             cafeInformation.arrayDic += [dicString]
                             cafeInformation.arrayTitle += [json[Int(key)!]["name"].string ?? ""]
                             
-                            
 //                            self.setupData(dic: dicString)
                         }
                     }
@@ -58,6 +57,5 @@ class Communicator: NSObject {
                 print("error: \(response.result.error)")
             }
         }
-    }*/
-    
+    }
 }

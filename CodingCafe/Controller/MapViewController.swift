@@ -15,6 +15,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
 
     let API = "https://cafenomad.tw/api/v1.0/cafes"
 
+    var communicator = Communicator()
+    var cafeInfo = cafeInformation()
+    
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var detailView: UIView!
     
@@ -53,6 +56,8 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        communicator = Communicator.shareInstance()
+        
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -100,7 +105,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         image_Star6.frame = frame
         
         
-         self.getCafeCoordinate()
+//        communicator.getCafeCoordinate { 
+//            self.setupData(dic: <#T##Dictionary<String, String>#>)
+//        }
+        
+            self.getCafeCoordinate()
+    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -291,18 +301,13 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         
-        UIView.animate(withDuration: 0.2, animations: {
-            
+        UIView.animate(withDuration: 0.2) { 
             mapView.frame = self.view.frame
             
             self.detailView.frame = CGRect(x: self.detailView.frame.origin.x,
                                            y: self.view.frame.maxY,
                                            width: self.frame_DetailView.size.width,
                                            height: self.frame_DetailView.size.height)
-            
-            
-        }) { (finished) in
-
         }
         
     }

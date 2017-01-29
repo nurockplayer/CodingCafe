@@ -22,6 +22,7 @@
 		DBC7CE4F1E09053E00A6A057 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE4E1E09053E00A6A057 /* MapKit.framework */; };
 		DBC7CE5F1E097F6D00A6A057 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE5E1E097F6D00A6A057 /* Alamofire.framework */; };
 		DBC7CE611E097F7000A6A057 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC7CE601E097F7000A6A057 /* SwiftyJSON.framework */; };
+		DBD9838F1E3E2E1F001EE188 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBD9838E1E3E2E1F001EE188 /* GoogleService-Info.plist */; };
 		DBE25D3A1E323EFF006BE670 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE25D391E323EFF006BE670 /* AboutViewController.swift */; };
 		DBE25D3C1E3245CF006BE670 /* AddNewDataWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE25D3B1E3245CF006BE670 /* AddNewDataWebViewController.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		DBC7CE4E1E09053E00A6A057 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		DBC7CE5E1E097F6D00A6A057 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "../../../Library/Developer/Xcode/DerivedData/CodingCafe-aplgnhxqjibpmpajyttptcwimgph/Build/Products/Debug-iphoneos/Alamofire/Alamofire.framework"; sourceTree = "<group>"; };
 		DBC7CE601E097F7000A6A057 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "../../../Library/Developer/Xcode/DerivedData/CodingCafe-aplgnhxqjibpmpajyttptcwimgph/Build/Products/Debug-iphoneos/SwiftyJSON/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		DBD9838E1E3E2E1F001EE188 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DBE25D391E323EFF006BE670 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		DBE25D3B1E3245CF006BE670 /* AddNewDataWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewDataWebViewController.swift; sourceTree = "<group>"; };
 		F14346CCB2A977045F7E9A0F /* Pods-CodingCafe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodingCafe.release.xcconfig"; path = "Pods/Target Support Files/Pods-CodingCafe/Pods-CodingCafe.release.xcconfig"; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				DB32E7271E2475990092B708 /* Controller */,
 				DB157D091E08C03800C02A1E /* Assets.xcassets */,
 				DB157D0B1E08C03800C02A1E /* LaunchScreen.storyboard */,
+				DBD9838E1E3E2E1F001EE188 /* GoogleService-Info.plist */,
 				DB157D0E1E08C03800C02A1E /* Info.plist */,
 			);
 			path = CodingCafe;
@@ -156,12 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DB157D111E08C03800C02A1E /* Build configuration list for PBXNativeTarget "CodingCafe" */;
 			buildPhases = (
-				C4C44F82C2712FE2D41CFBDB /* 📦 Check Pods Manifest.lock */,
+				C4C44F82C2712FE2D41CFBDB /* [CP] Check Pods Manifest.lock */,
 				DB157CFB1E08C03800C02A1E /* Sources */,
 				DB157CFC1E08C03800C02A1E /* Frameworks */,
 				DB157CFD1E08C03800C02A1E /* Resources */,
-				9B639A81F61C3F998626EC29 /* 📦 Embed Pods Frameworks */,
-				9697AAED84256A42EBE9AC76 /* 📦 Copy Pods Resources */,
+				9B639A81F61C3F998626EC29 /* [CP] Embed Pods Frameworks */,
+				9697AAED84256A42EBE9AC76 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DB157D0D1E08C03800C02A1E /* LaunchScreen.storyboard in Resources */,
+				DBD9838F1E3E2E1F001EE188 /* GoogleService-Info.plist in Resources */,
 				DB157D0A1E08C03800C02A1E /* Assets.xcassets in Resources */,
 				DB157D081E08C03800C02A1E /* Main.storyboard in Resources */,
 			);
@@ -227,14 +231,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9697AAED84256A42EBE9AC76 /* 📦 Copy Pods Resources */ = {
+		9697AAED84256A42EBE9AC76 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,14 +246,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CodingCafe/Pods-CodingCafe-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9B639A81F61C3F998626EC29 /* 📦 Embed Pods Frameworks */ = {
+		9B639A81F61C3F998626EC29 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,19 +261,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CodingCafe/Pods-CodingCafe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C4C44F82C2712FE2D41CFBDB /* 📦 Check Pods Manifest.lock */ = {
+		C4C44F82C2712FE2D41CFBDB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

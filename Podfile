@@ -10,7 +10,9 @@ target 'CodingCafe' do
   # Pods for CodingCafe
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'GoogleMaps'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
   
 end
 

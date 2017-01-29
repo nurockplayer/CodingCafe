@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>GoogleToolboxForMac.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>ObjectMapper.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -27,6 +32,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>00103D6C821BE85971C563025527BA5D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1C8029E77F488C939708399CBCD7BE15</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2E475C09F8C5D03915E21E07D7D31036</key>
 		<dict>
 			<key>primary</key>
@@ -42,12 +57,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8A6EECBF35EEB0DCEF07069D084E5CE8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>A0198EDCAD8D444F7CEEFF46F05C84F0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>B9BA761002CA98DDCD637DDA92349D84</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5B80060FE8C664DF08841000F41D515</key>
 		<dict>
 			<key>primary</key>
 			<true/>

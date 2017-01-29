@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import GoogleMaps
+//import GoogleMaps
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,8 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        GMSServices.provideAPIKey("AIzaSyB4SKZNrjkzCaYemmr14GDn6Zlf3CQ6ufg")
+//        GMSServices.provideAPIKey("AIzaSyB4SKZNrjkzCaYemmr14GDn6Zlf3CQ6ufg")
         UITabBar.appearance().tintColor = UIColor.init(red: 79/255, green: 63/255, blue: 61/255, alpha: 1)
+        FIRApp.configure()
         
         return true
     }

@@ -325,7 +325,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.30980392156862746" green="0.24705882352941178" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.34901960784313724" green="0.28235294117647058" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T90-5h-QGz">
                                         <rect key="frame" x="0.0" y="64" width="375" height="37"/>
@@ -543,9 +543,10 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Mjo-2a-cKf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="找咖啡去" image="iconTabBar_Cafe" id="EJh-hV-xDd"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="B7h-ZW-REd">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="B7h-ZW-REd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.34901960784313724" green="0.28235294117647058" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.30980392156862746" green="0.24705882352941178" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
@@ -566,11 +567,11 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="dMF-ZR-1bK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="dMF-ZR-1bK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.34901960784313724" green="0.28235294117647058" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.30980392156862746" green="0.24705882352941178" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
