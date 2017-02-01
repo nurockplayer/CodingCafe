@@ -11,9 +11,8 @@ import MapKit
 import Alamofire
 import SwiftyJSON
 
-class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    let API = "https://cafenomad.tw/api/v1.0/cafes"
 
     var communicator = Communicator()
     var cafeInfo = cafeInformation()
@@ -21,6 +20,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var detailView: UIView!
     
+    @IBOutlet var collectionView: UICollectionView!
     
     @IBOutlet var label_Name: UILabel!
     @IBOutlet var label_Address: UILabel!
@@ -40,7 +40,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     @IBOutlet var image_Star6: UIImageView!
     
     
-    
     var locationManager : CLLocationManager!
     var selectAnnLocation : CLLocationCoordinate2D?
     var currentLocation : CLLocationCoordinate2D?
@@ -49,6 +48,9 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
     var arrayTitle = [String]()
     var arrayDic = [Dictionary<String, String>]()
     var fbUrl = ""
+
+    var array_LabelItem  = ["WIFI穩定","咖啡好喝","安靜程度","價格便宜","通常有位","裝潢音樂","有無限時","插座多寡","可站立工作"]
+    let array_Item = ["wifi","tasty","quiet","cheap","seat","music"]
 
     var frame_DetailView = CGRect()
     
@@ -68,6 +70,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+
+        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        
+        let w = self.view.frame.size.width / 2 - 10
+        var h = self.view.frame.size.height / 25
+        h = self.view.frame.width / 15
+        flowLayout.estimatedItemSize = CGSize(width: w, height: h)
+//        flowLayout.minimumInteritemSpacing = 1
+//        flowLayout.minimumLineSpacing = 1
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +118,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         
         
         communicator.getCafeCoordinate { (resultValue, error) in
+            
             if let value = resultValue {
                 
                 DispatchQueue.global().async {
@@ -283,7 +296,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         }
         
 //        mapView.setCenter(selectAnnLocation!, animated: false)
-
+        collectionView.reloadData()
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
@@ -346,5 +359,41 @@ class MapViewController: UIViewController, MKMapViewDelegate, CLLocationManagerD
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return array_LabelItem.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! MapCollectionViewCell
+        
+        
+        cell.label.text = array_LabelItem[indexPath.row]
+        cell.label.sizeToFit()
+        
+        var frame = cell.imageView.frame
+        frame.origin.x = cell.label.frame.maxX //+ self.view.frame.size.width / 375
+        frame.origin.y = cell.label.frame.origin.y
+        cell.imageView.frame = frame
+        
+        if annationTitle != nil && indexPath.row < 5 {
+            let indexNumber = arrayTitle.index(of: annationTitle!)
+            let dic = arrayDic[indexNumber!]
+            
+            switch Float(dic[array_Item[indexPath.row]] ?? "0")! {
+                
+            case 1...5:
+                
+                cell.imageView.image = UIImage(named: "starItem\(dic[array_Item[indexPath.row]]!)")
+            default:
+                cell.imageView.image = UIImage(named: "starItem0")
+            }
+        }
+ 
+        return cell
+    }
 
+    
 }

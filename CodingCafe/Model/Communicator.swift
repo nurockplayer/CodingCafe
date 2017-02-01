@@ -25,7 +25,7 @@ class Communicator: NSObject {
     }
     
 
-    let API = "https://cafenomad.tw/api/v1.0/cafes"
+    let API = "https://cafenomad.tw/api/v1.1/cafes"
     
     
     func getCafeCoordinate(completionHandler: @escaping (Any?, Error?) -> ()) {
